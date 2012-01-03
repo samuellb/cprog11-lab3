@@ -1,0 +1,5 @@
+*.o
+*~
+game
+tests
+tests_gen.cpp
