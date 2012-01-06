@@ -9,6 +9,11 @@ Actor::Actor(Controller &c) :
     
 }
 
+bool Actor::is_player()
+{
+    return false;
+}
+
 
 }
 
