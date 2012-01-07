@@ -1,5 +1,5 @@
 
-OBJECTS = actor.o controller.o main.o place.o
+OBJECTS = actor.o controller.o main.o map.o place.o
 
 CFLAGS += -Wall -Wextra -Weffc++ -O2 -std=c++0x -g
 

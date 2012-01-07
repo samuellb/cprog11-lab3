@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "types.h"
+#include "map.h"
 
 namespace game {
 
@@ -14,6 +15,7 @@ class Controller {
         void run_step();
         
     private:
+        Map map;
         std::vector<Actor*> actors;
         
 };
