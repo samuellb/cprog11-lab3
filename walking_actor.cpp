@@ -4,6 +4,7 @@
 namespace game {
 
 WalkingActor::WalkingActor(Controller &c) :
+    Actor(c),
     controller(c)
 {
     

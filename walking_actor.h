@@ -2,11 +2,12 @@
 #define WALKING_ACTOR_H
 
 #include "types.h"
+#include "actor.h"
 #include <string>
 
 namespace game {
 
-class WalkingActor {
+class WalkingActor : Actor {
     
     public:
         WalkingActor(Controller &c);

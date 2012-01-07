@@ -5,6 +5,7 @@ namespace game {
 
 // All types are defined here so they can have circular depenencies
 class Actor;
+class WalkingActor;
 class Controller;
 class Map;
 class Place;
