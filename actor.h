@@ -16,6 +16,8 @@ class Actor {
         virtual void go() = 0;
         virtual void talk(Actor &) = 0;
         virtual void fight(Actor &) = 0;
+        virtual void drop(Object &) = 0;
+        virtual void pick_up(Object &) = 0;
 
         virtual std::string name() = 0;
         virtual std::string type() = 0;
