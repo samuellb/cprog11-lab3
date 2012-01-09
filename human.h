@@ -1,5 +1,5 @@
-#ifndef WOLF_H
-#define WOLF_H
+#ifndef HUMAN_H
+#define HUMAN_H
 
 #include "types.h"
 #include "actor.h"
