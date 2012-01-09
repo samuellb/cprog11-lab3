@@ -23,7 +23,7 @@ Container::~Container()
 bool Container::add(Object & object)
 {
     if (used_volume + object.volume() <= hold_volume() && used_weight + object.weight() <= hold_weight()) {
-        objects->push_back(&object);
+        objects.push_back(&object);
         used_volume += object.volume();
         used_weight += object.weight();
         return true;
@@ -36,9 +36,9 @@ bool Container::remove(Object & object)
 {
     std::vector<Object *>::iterator it;
 
-    for (it = objects->begin(); it != objects->end(); ++it) {
+    for (it = objects.begin(); it != objects.end(); ++it) {
         if ((*it) == &object) {
-            objects->erase(it);
+            objects.erase(it);
             return true;
         }
     }

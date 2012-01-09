@@ -19,7 +19,7 @@ class Container : public Object {
         virtual bool add(Object &);
         virtual bool remove(Object &);
 
-        std::vector<Object *> * objects;
+        std::vector<Object *> objects;
 
     protected:
         Controller &controller;
