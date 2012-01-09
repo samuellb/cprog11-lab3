@@ -8,7 +8,7 @@
 
 namespace game {
 
-class OutdoorPlace : Place {
+class OutdoorPlace : public Place {
     
     public:
         
