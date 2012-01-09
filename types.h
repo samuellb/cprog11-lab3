@@ -13,6 +13,8 @@ class Map;
 class Place;
 
 class Object;
+class Weapon;
+class Sword;
 class Key;
 class Container;
 class Backpack;

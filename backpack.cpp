@@ -42,17 +42,17 @@ int Backpack::hold_volume()
     return 100;
 }
 
-std::string Backpack::name()
+std::string Backpack::name() const
 {
     return "Backpack";
 }
 
-std::string Backpack::type()
+std::string Backpack::type() const
 {
     return "Container";
 }
 
-std::string Backpack::description()
+std::string Backpack::description() const
 {
     return "A magic backpack created by God.";
 }

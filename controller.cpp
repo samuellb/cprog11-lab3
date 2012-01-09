@@ -4,6 +4,9 @@
 #include "backpack.h"
 #include "key.h"
 #include "player.h"
+#include "sword.h"
+
+#include <iostream>
 
 namespace game {
 
@@ -26,6 +29,11 @@ void Controller::run_step()
 
     player->pick_up(*key);
     player->drop(*key);
+
+
+    Sword * sword = new Sword(*this, 1000);
+    std::cout << sword->description() << std::endl;
+    delete sword;
 }
 
 

@@ -30,17 +30,17 @@ int Key::price()
     return 100;
 }
 
-std::string Key::name()
+std::string Key::name() const
 {
     return "Key";
 }
 
-std::string Key::type()
+std::string Key::type() const
 {
     return "Key";
 }
 
-std::string Key::description()
+std::string Key::description() const
 {
     return "Something something....";
 }

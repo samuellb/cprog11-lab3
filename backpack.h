@@ -22,9 +22,9 @@ class Backpack : public Container {
         //virtual bool add(Object &);
         //virtual bool remove(Object &);
 
-        virtual std::string name();
-        virtual std::string type();
-        virtual std::string description();
+        virtual std::string name() const;
+        virtual std::string type() const;
+        virtual std::string description() const;
 
     protected:
         Controller &controller;

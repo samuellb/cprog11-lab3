@@ -1,17 +1,17 @@
-#ifndef KEY_H
-#define KEY_H
+#ifndef SWORD_H
+#define SWORD_H
 
 #include "types.h"
-#include "object.h"
+#include "weapon.h"
 #include <string>
 
 namespace game {
 
-class Key : public Object {
+class Sword : public Weapon {
     
     public:
-        Key(Controller &c);
-        ~Key();
+        Sword(Controller &c, unsigned int);
+        virtual ~Sword();
 
         virtual int weight();
         virtual int volume();
@@ -28,6 +28,3 @@ class Key : public Object {
 }
 
 #endif
-
-
-
