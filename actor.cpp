@@ -4,6 +4,7 @@
 namespace game {
 
 Actor::Actor(Controller &c) :
+    health(100),
     controller(c)
 {
     
