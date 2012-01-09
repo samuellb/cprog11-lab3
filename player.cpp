@@ -4,7 +4,7 @@
 namespace game {
 
 Player::Player(Controller &c) :
-    Wolf(c),
+    Human(c),
     controller(c)
 {
     
