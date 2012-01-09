@@ -7,7 +7,7 @@
 
 namespace game {
 
-class Human : Actor {
+class Human : public Actor {
     
     public:
         Human(Controller &c);

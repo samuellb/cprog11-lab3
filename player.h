@@ -2,16 +2,16 @@
 #define PLAYER_H
 
 #include "types.h"
-#include "wolf.h"
+#include "human.h"
 #include <string>
 
 namespace game {
 
-class Player : Wolf {
+class Player : public Human {
     
     public:
         Player(Controller &c);
-        ~Player() = 0;
+        ~Player();
     
     protected:
         Controller &controller;
