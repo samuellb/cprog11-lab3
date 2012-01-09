@@ -5,13 +5,19 @@
 
 namespace game {
 
-Place::Place(std::string name_, std::string description_text_) :
+Place::Place(Controller & controller_,
+             std::string name_, std::string description_text_) :
+    controller(controller_),
     name(name_),
     description_text(description_text_),
     actors()
 {
 }
-        
+
+Place::~Place()
+{
+}
+
 void Place::enter(Actor & actor)
 {
     actors.insert(&actor);
