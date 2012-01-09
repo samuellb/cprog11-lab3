@@ -11,9 +11,9 @@ class Wolf : public Actor {
     
     public:
         Wolf(Controller &c);
-        ~Wolf() = 0;
+        virtual ~Wolf() = 0;
     
-        void go() = 0;
+        virtual void go() = 0;
 
     protected:
         Controller &controller;

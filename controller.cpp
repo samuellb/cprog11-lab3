@@ -3,6 +3,7 @@
 #include "place.h"
 #include "backpack.h"
 #include "key.h"
+#include "player.h"
 
 namespace game {
 
@@ -18,9 +19,13 @@ void Controller::run_step()
         actor->act();
     }
 
+    Player * player = new Player(*this);
     Backpack * bp = new Backpack(*this);
     Key * key = new Key(*this);
-    bp->add(*key);
+    //bp->add(*key);
+
+    player->pick_up(*key);
+    player->drop(*key);
 }
 
 

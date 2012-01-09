@@ -10,6 +10,11 @@ Wolf::Wolf(Controller &c) :
     
 }
 
+Wolf::~Wolf()
+{
+
+}
+
 void Wolf::go()
 {
     // move

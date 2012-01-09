@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "actor.h"
+#include "container.h"
 #include <string>
 
 namespace game {
@@ -10,13 +11,21 @@ namespace game {
 class Human : public Actor {
     
     public:
-        Human(Controller &c);
-        ~Human() = 0;
+        Human(Controller &);
+        explicit Human(const Human &);
+        virtual ~Human();
     
-        void go() = 0;
+        virtual void go();
+        virtual bool drop(Object &);
+        virtual bool pick_up(Object &);
+
+        virtual std::string name() = 0;
+        virtual std::string type();
+        virtual std::string description() = 0;
 
     protected:
         Controller &controller;
+        Container * container;
 };
 
 }

@@ -11,8 +11,14 @@ class Player : public Human {
     
     public:
         Player(Controller &c);
-        ~Player();
-    
+        virtual ~Player();
+
+        virtual void act();
+        virtual void talk(Actor &);
+        virtual void fight(Actor &);
+
+        virtual std::string name();
+        virtual std::string description();
     protected:
         Controller &controller;
 };

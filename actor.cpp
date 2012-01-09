@@ -10,6 +10,11 @@ Actor::Actor(Controller &c) :
     
 }
 
+Actor::~Actor()
+{
+
+}
+
 bool Actor::is_player()
 {
     return false;
