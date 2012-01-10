@@ -1,0 +1,3 @@
+outdoor 3 2	test_room	this_is_room_3x2
+end
+

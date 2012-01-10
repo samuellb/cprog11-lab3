@@ -22,6 +22,7 @@ class OutdoorPlace : public Place {
         virtual std::set<std::string> & directions();
         virtual Place & neighbor(std::string direction);
         Place & neighbor(Direction direction);
+        Direction parse_direction(std::string direction);
         
         // TODO pick_up / drop item
         

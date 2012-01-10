@@ -41,13 +41,7 @@ std::set<std::string> & OutdoorPlace::directions()
 
 Place & OutdoorPlace::neighbor(std::string direction)
 {
-    for (size_t dir = 0; dir < 8; dir++) {
-        if (direction == direction_names[dir]) {
-            return neighbor(static_cast<Direction>(dir));
-        }
-    }
-    
-    throw new std::invalid_argument("invalid direction name");
+    return neighbor(parse_direction(direction));
 }
 
 Place & OutdoorPlace::neighbor(OutdoorPlace::Direction dir)
@@ -60,6 +54,16 @@ Place & OutdoorPlace::neighbor(OutdoorPlace::Direction dir)
     return controller.get_room(offset[dir].x, offset[dir].y);
 }
 
+OutdoorPlace::Direction OutdoorPlace::parse_direction(std::string direction)
+{
+    for (size_t dir = 0; dir < 8; dir++) {
+        if (direction == direction_names[dir]) {
+            return static_cast<Direction>(dir);
+        }
+    }
+    
+    throw new std::invalid_argument("invalid direction name");
+}
 
 }
 
