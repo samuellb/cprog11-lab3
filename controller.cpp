@@ -14,19 +14,12 @@
 
 namespace game {
 
-
-template<typename T> void Controller::add_serializable()
-{
-    load_functions[T::static_type()] = &T::load;
-}
-
-
 Controller::Controller() :
     map(10, 10),
     actors(),
-    load_functions()
+    parse_methods()
 {
-    add_serializable<OutdoorPlace>();
+    parse_methods[std::string("outdoor")] = &Controller::parse_outdoor;
     actors.push_back(new Player(*this));
     actors.push_back(new Wolf(*this));
     actors.push_back(new OldMan(*this));
@@ -67,11 +60,6 @@ Place & Controller::get_room(size_t x, size_t y)
     return map.get(x, y);
 }
 
-void Controller::add_place(Place & place)
-{
-    map.add(place);
-}
-
 void Controller::load(std::istream & is)
 {
     std::ios::iostate prev_exc = is.exceptions(); // TODO should use RAII
@@ -84,18 +72,43 @@ void Controller::load(std::istream & is)
         if (command == "end") break;
         if (command.empty()) continue;
         
-        auto it = load_functions.find(command);
-        if (it == load_functions.end()) {
+        auto it = parse_methods.find(command);
+        if (it == parse_methods.end()) {
             std::cerr << "invalid keyword in map/save file: " << command << std::endl;
             break;
         }
         
         // Parse this command
-        it->second(*this, is);
+        (*this.*it->second)(is);
     }
     
     is.exceptions(prev_exc);
 }
+
+void Controller::parse_outdoor(std::istream & is)
+{
+    char s[200];
+    int x, y;
+    
+    is >> x >> y;
+    
+    is >> s;
+    std::string name(s);
+    
+    is >> s;
+    std::string description(s);
+    
+/*    is >> s;
+    if (strcmp(s, "(")) break;
+    
+    is >> s;
+    OutdoorPlace::Direction dir(s);*/
+    // TODO
+    OutdoorPlace::Direction allowed = static_cast<OutdoorPlace::Direction>(255);
+    
+    new OutdoorPlace(*this, name, description, x, y, allowed);
+}
+
 
 }
 

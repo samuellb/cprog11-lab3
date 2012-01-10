@@ -1,10 +1,7 @@
 #ifndef TYPES_H
 #define TYPES_H
 
-#include "serializable.h"
-
 namespace game {
-
 
 // All types are defined here so they can have circular depenencies
 class Actor;

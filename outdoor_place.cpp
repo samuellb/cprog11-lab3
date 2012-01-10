@@ -65,47 +65,6 @@ OutdoorPlace::Direction OutdoorPlace::parse_direction(std::string direction)
     throw new std::invalid_argument("invalid direction name");
 }
 
-
-std::string OutdoorPlace::static_type()
-{
-    return "outdoor";
-}
-
-std::string OutdoorPlace::type() const
-{
-    return static_type();
-}
-
-void OutdoorPlace::save(std::ostream & os) const
-{
-    os << x << y;
-}
-
-void OutdoorPlace::load(Controller & controller, std::istream & is)
-{
-    char s[200];
-    int x, y;
-    
-    is >> x >> y;
-    
-    is >> s;
-    std::string name(s);
-    
-    is >> s;
-    std::string description(s);
-    
-/*    is >> s;
-    if (strcmp(s, "(")) break;
-    
-    is >> s;
-    OutdoorPlace::Direction dir(s);*/
-    // TODO
-    OutdoorPlace::Direction allowed = static_cast<OutdoorPlace::Direction>(255);
-    
-    controller.add_place(*new OutdoorPlace(controller, name, description,
-                                           x, y, allowed));
-}
-
 }
 
 

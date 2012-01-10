@@ -59,10 +59,6 @@ bool Place::has_nonplayer_actors()
     return true; // otherwise there must be a non-player actor
 }
 
-void Place::save(std::ostream & os)
-{
-    os << name << description_text;
-}
 
 }
 
