@@ -3,11 +3,12 @@
 
 #include <set>
 #include <string>
+#include <iostream>
 #include "types.h"
 
 namespace game {
 
-class Place {
+class Place : public Serializable {
     
     public:
         Place(Controller & controller_,
@@ -21,6 +22,8 @@ class Place {
         virtual Place & neighbor(std::string direction) = 0;
         
         std::string description();
+        
+        virtual void save(std::ostream & os);
         
         // TODO pick_up / drop item
         

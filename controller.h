@@ -19,15 +19,16 @@ class Controller {
         Place & get_room(size_t x, size_t y);
         void load(std::istream & is);
         
+        void add_place(Place & place);
+        
     private:
         Map map;
         std::vector<Actor*> actors;
         
-        typedef void (Controller::*parse_method_type)(std::istream & is);
-        std::map<std::string, parse_method_type> parse_methods;
+        typedef void (*load_function)(Controller & controller, std::istream & is);
+        std::map<std::string, load_function> load_functions;
         
-        void parse_outdoor(std::istream & is);
-        
+        template<typename T> void add_serializable();
 };
 
 }

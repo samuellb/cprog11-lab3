@@ -24,6 +24,11 @@ class OutdoorPlace : public Place {
         Place & neighbor(Direction direction);
         Direction parse_direction(std::string direction);
         
+        static std::string static_type();
+        virtual std::string type() const;
+        virtual void save(std::ostream &) const;
+        static void load(Controller &, std::istream &);
+        
         // TODO pick_up / drop item
         
     private:
