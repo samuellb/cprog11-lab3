@@ -4,8 +4,8 @@
 
 namespace game {
 
-Player::Player(Controller &c) :
-    Human(c),
+Player::Player(Controller & c, Place & p) :
+    Human(c, p),
     controller(c)
 {
     

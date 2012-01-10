@@ -11,11 +11,9 @@ namespace game {
 class Human : public Actor {
     
     public:
-        Human(Controller &);
-        explicit Human(const Human &);
+        Human(Controller &, Place &);
         virtual ~Human();
     
-        virtual void go();
         virtual bool drop(Object &);
         virtual bool pick_up(Object &);
 

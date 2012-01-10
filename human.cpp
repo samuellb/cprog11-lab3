@@ -5,18 +5,10 @@
 
 namespace game {
 
-Human::Human(Controller &c) :
-    Actor(c),
+Human::Human(Controller & c, Place & p) :
+    Actor(c, p),
     controller(c),
     container(new Backpack(c))
-{
-
-}
-
-Human::Human(const Human & human) :
-    Actor(human.controller),
-    controller(human.controller),
-    container(human.container)
 {
 
 }
@@ -24,11 +16,6 @@ Human::Human(const Human & human) :
 Human::~Human()
 {
     delete container;
-}
-
-void Human::go()
-{
-    // move
 }
 
 bool Human::drop(Object & object)

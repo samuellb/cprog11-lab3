@@ -20,9 +20,11 @@ Controller::Controller() :
     map(10, 10),
     actors()
 {
-    actors.push_back(new Player(*this));
-    actors.push_back(new Wolf(*this));
-    actors.push_back(new OldMan(*this));
+    Place * place = new OutdoorPlace(*this, "test", "afsfgsdf", 1, 1, static_cast<OutdoorPlace::Direction>(255));
+
+    actors.push_back(new Player(*this, *place));
+    actors.push_back(new Wolf(*this, *place));
+    actors.push_back(new OldMan(*this, *place));
 }
 
 Controller::~Controller()

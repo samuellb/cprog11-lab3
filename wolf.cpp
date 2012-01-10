@@ -4,8 +4,8 @@
 
 namespace game {
 
-Wolf::Wolf(Controller &c) :
-    Actor(c),
+Wolf::Wolf(Controller & c, Place & p) :
+    Actor(c, p),
     controller(c)
 {
     
@@ -19,11 +19,6 @@ Wolf::~Wolf()
 void Wolf::act()
 {
 
-}
-
-void Wolf::go()
-{
-    // move
 }
 
 std::string Wolf::name()

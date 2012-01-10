@@ -10,7 +10,7 @@ namespace game {
 class Player : public Human {
     
     public:
-        Player(Controller &c);
+        Player(Controller &, Place &);
         virtual ~Player();
 
         virtual void act();

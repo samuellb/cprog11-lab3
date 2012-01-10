@@ -4,8 +4,8 @@
 
 namespace game {
 
-OldMan::OldMan(Controller &c) :
-    Human(c),
+OldMan::OldMan(Controller & c, Place & p) :
+    Human(c, p),
     controller(c)
 {
     

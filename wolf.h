@@ -10,11 +10,10 @@ namespace game {
 class Wolf : public Actor {
     
     public:
-        Wolf(Controller &c);
+        Wolf(Controller &, Place &);
         virtual ~Wolf();
 
         virtual void act();
-        virtual void go();
 
         virtual std::string name();
         virtual std::string type();
