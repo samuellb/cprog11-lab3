@@ -65,12 +65,21 @@ void Controller::load(std::istream & is)
     std::ios::iostate prev_exc = is.exceptions(); // TODO should use RAII
     is.exceptions(std::ios::eofbit | std::ios::failbit | std::ios::badbit);
     
-    char command[50];
-    is >> command;
-    while (std::strcmp(command, "end")) {
-        if (std::strcmp(command, "")) {
-            (*this.*parse_methods[command])(is);
+    std::string command;
+    while (true) {
+        is >> command;
+        std::cout << "read >" << command << "<" << std::endl;
+        if (command == "end") break;
+        if (command.empty()) continue;
+        
+        auto it = parse_methods.find(command);
+        if (it == parse_methods.end()) {
+            std::cerr << "invalid keyword in map/save file: " << command << std::endl;
+            break;
         }
+        
+        // Parse this command
+        (*this.*it->second)(is);
     }
     
     is.exceptions(prev_exc);
