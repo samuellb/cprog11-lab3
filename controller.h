@@ -13,6 +13,7 @@ class Controller {
         Controller();
         
         void run_step();
+        Place & get_room(size_t x, size_t y);
         
     private:
         Map map;

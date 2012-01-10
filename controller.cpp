@@ -36,6 +36,11 @@ void Controller::run_step()
     delete sword;
 }
 
+Place & Controller::get_room(size_t x, size_t y)
+{
+    return map.get(x, y);
+}
+
 
 }
 
