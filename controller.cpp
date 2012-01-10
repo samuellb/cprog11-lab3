@@ -5,6 +5,8 @@
 #include "key.h"
 #include "player.h"
 #include "sword.h"
+#include "wolf.h"
+#include "old_man.h"
 
 #include <iostream>
 
@@ -14,8 +16,18 @@ Controller::Controller() :
     map(10, 10),
     actors()
 {
+    actors.push_back(new Player(*this));
+    actors.push_back(new Wolf(*this));
+    actors.push_back(new OldMan(*this));
 }
-        
+
+Controller::~Controller()
+{
+    for (auto actor : actors) {
+        delete actor;
+    }
+}
+
 void Controller::run_step()
 {
     for (auto actor : actors) {
@@ -25,11 +37,14 @@ void Controller::run_step()
     Player * player = new Player(*this);
     Backpack * bp = new Backpack(*this);
     Key * key = new Key(*this);
-    //bp->add(*key);
+    bp->add(*key);
 
     player->pick_up(*key);
     player->drop(*key);
 
+    delete player;
+    delete bp;
+    delete key;
 
     Sword * sword = new Sword(*this, 1000);
     std::cout << sword->description() << std::endl;

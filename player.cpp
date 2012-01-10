@@ -16,6 +16,12 @@ Player::~Player()
 
 }
 
+bool Player::is_player()
+{
+    return true;
+}
+
+
 void Player::act()
 {
 }

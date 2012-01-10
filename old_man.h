@@ -1,5 +1,5 @@
-#ifndef PLAYER_H
-#define PLAYER_H
+#ifndef OLD_MAN_H
+#define OLD_MAN_H
 
 #include "types.h"
 #include "human.h"
@@ -7,19 +7,17 @@
 
 namespace game {
 
-class Player : public Human {
+class OldMan : public Human {
     
     public:
-        Player(Controller &c);
-        virtual ~Player();
+        OldMan(Controller &c);
+        virtual ~OldMan();
 
         virtual void act();
         virtual void talk(Actor &);
-        virtual void fight(Actor &);
 
         virtual std::string name();
         virtual std::string description();
-        virtual bool is_player();
     protected:
         Controller &controller;
 };

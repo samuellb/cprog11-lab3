@@ -8,6 +8,7 @@ class Actor;
 class Wolf;
 class Human;
 class Player;
+class OldMan;
 class Controller;
 class Map;
 class Place;

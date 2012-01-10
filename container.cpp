@@ -17,7 +17,9 @@ Container::Container(Controller &c) :
 
 Container::~Container()
 {
-
+    for (auto object : objects) {
+        delete object;
+    }
 }
 
 bool Container::add(Object & object)

@@ -11,9 +11,14 @@ class Wolf : public Actor {
     
     public:
         Wolf(Controller &c);
-        virtual ~Wolf() = 0;
-    
-        virtual void go() = 0;
+        virtual ~Wolf();
+
+        virtual void act();
+        virtual void go();
+
+        virtual std::string name();
+        virtual std::string type();
+        virtual std::string description();
 
     protected:
         Controller &controller;

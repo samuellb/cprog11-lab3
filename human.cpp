@@ -23,7 +23,7 @@ Human::Human(const Human & human) :
 
 Human::~Human()
 {
-
+    delete container;
 }
 
 void Human::go()

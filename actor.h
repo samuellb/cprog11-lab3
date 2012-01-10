@@ -10,14 +10,14 @@ class Actor {
     
     public:
         Actor(Controller &c);
-        virtual ~Actor() = 0;
+        virtual ~Actor();
 
         virtual void act() = 0;
-        virtual void go() = 0;
-        virtual void talk(Actor &) = 0;
-        virtual void fight(Actor &) = 0;
-        virtual bool drop(Object &) = 0;
-        virtual bool pick_up(Object &) = 0;
+        virtual void go();
+        virtual void talk(Actor &);
+        virtual void fight(Actor &);
+        virtual bool drop(Object &);
+        virtual bool pick_up(Object &);
 
         virtual std::string name() = 0;
         virtual std::string type() = 0;
