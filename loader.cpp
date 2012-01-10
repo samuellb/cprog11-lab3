@@ -8,6 +8,7 @@
 #include "wolf.h"
 #include "old_man.h"
 #include "outdoor_place.h"
+#include "loader.h"
 
 #include <iostream>
 #include <cstring>
@@ -67,7 +68,7 @@ void Loader::parse_outdoor(std::istream & is)
     // TODO
     OutdoorPlace::Direction allowed = static_cast<OutdoorPlace::Direction>(255);
     
-    new OutdoorPlace(*this, name, description, x, y, allowed);
+    new OutdoorPlace(controller, name, description, x, y, allowed);
 }
 
 

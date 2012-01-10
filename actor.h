@@ -9,11 +9,11 @@ namespace game {
 class Actor {
     
     public:
-        Actor(Controller &c);
+        Actor(Controller &, Place &);
         virtual ~Actor();
 
         virtual void act() = 0;
-        virtual void go();
+        virtual void go(std::string);
         virtual void talk(Actor &);
         virtual void fight(Actor &);
         virtual bool drop(Object &);
@@ -27,6 +27,7 @@ class Actor {
         int health;
         
     protected:
+        Place * current_place;
         Controller &controller;
 };
 

@@ -18,7 +18,7 @@ namespace game {
 
 Controller::Controller() :
     map(10, 10),
-    actors(),
+    actors()
 {
     actors.push_back(new Player(*this));
     actors.push_back(new Wolf(*this));
@@ -34,8 +34,9 @@ Controller::~Controller()
 
 void Controller::load(std::string filename)
 {
+    std::ifstream map(filename);
     Loader loader(*this);
-    loader.load(std::ifstream(filename));
+    loader.load(map);
 }
 
 void Controller::run_step()
@@ -44,21 +45,26 @@ void Controller::run_step()
         actor->act();
     }
 
-    Player * player = new Player(*this);
-    Backpack * bp = new Backpack(*this);
-    Key * key = new Key(*this);
-    bp->add(*key);
+    //Player * player = new Player(*this);
+    //Backpack * bp = new Backpack(*this);
+    //Key * key = new Key(*this);
+    //bp->add(*key);
 
-    player->pick_up(*key);
-    player->drop(*key);
+    //player->pick_up(*key);
+    //player->drop(*key);
 
-    delete player;
-    delete bp;
-    delete key;
+    //delete player;
+    //delete bp;
+    //delete key;
 
-    Sword * sword = new Sword(*this, 1000);
-    std::cout << sword->description() << std::endl;
-    delete sword;
+    //Sword * sword = new Sword(*this, 1000);
+    //std::cout << sword->description() << std::endl;
+    //delete sword;
+}
+
+void Controller::add_place(Place & place)
+{
+    map.add(place);
 }
 
 Place & Controller::get_room(size_t x, size_t y)

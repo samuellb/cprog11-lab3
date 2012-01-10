@@ -1,5 +1,6 @@
 #include "place.h"
 #include "actor.h"
+#include "controller.h"
 #include <sstream>
 
 
@@ -12,6 +13,7 @@ Place::Place(Controller & controller_,
     description_text(description_text_),
     actors()
 {
+    controller.add_place(*this);
 }
 
 Place::~Place()

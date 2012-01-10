@@ -18,7 +18,7 @@ class Loader {
         void load(std::istream & is);
         
     private:
-        typedef void (Controller::*parse_method_type)(std::istream & is);
+        typedef void (Loader::*parse_method_type)(std::istream & is);
         std::map<std::string, parse_method_type> parse_methods;
         
         void parse_outdoor(std::istream &);

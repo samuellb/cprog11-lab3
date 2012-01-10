@@ -9,10 +9,10 @@ class Wolf;
 class Human;
 class Player;
 class OldMan;
+class Loader;
 class Controller;
 class Map;
 class Place;
-
 class Object;
 class Weapon;
 class Sword;
