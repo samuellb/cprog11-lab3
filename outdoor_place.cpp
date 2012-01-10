@@ -51,7 +51,7 @@ Place & OutdoorPlace::neighbor(OutdoorPlace::Direction dir)
         /*S*/{  0,  1 }, /*SW*/{ -1,  1 }, /*W*/{ -1,  0 }, /*NW*/{ -1, -1 }
     };
     
-    return controller.get_room(offset[dir].x, offset[dir].y);
+    return controller.get_room(x + offset[dir].x, y + offset[dir].y);
 }
 
 OutdoorPlace::Direction OutdoorPlace::parse_direction(std::string direction)
