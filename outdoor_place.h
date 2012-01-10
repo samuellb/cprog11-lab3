@@ -20,8 +20,8 @@ class OutdoorPlace : public Place {
         virtual ~OutdoorPlace();
         
         virtual std::set<std::string> & directions();
-        virtual Place *neighbor(std::string direction);
-        Place *neighbor(Direction direction);
+        virtual Place & neighbor(std::string direction);
+        Place & neighbor(Direction direction);
         
         // TODO pick_up / drop item
         

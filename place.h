@@ -18,7 +18,7 @@ class Place {
         virtual void leave(Actor & actor);
         
         virtual std::set<std::string> & directions() = 0;
-        virtual Place *neighbor(std::string direction) = 0;
+        virtual Place & neighbor(std::string direction) = 0;
         
         std::string description();
         

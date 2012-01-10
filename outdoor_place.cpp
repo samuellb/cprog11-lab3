@@ -39,7 +39,7 @@ std::set<std::string> & OutdoorPlace::directions()
     return set;
 }
 
-Place *OutdoorPlace::neighbor(std::string direction)
+Place & OutdoorPlace::neighbor(std::string direction)
 {
     for (size_t dir = 0; dir < 8; dir++) {
         if (direction == direction_names[dir]) {
@@ -50,14 +50,14 @@ Place *OutdoorPlace::neighbor(std::string direction)
     throw new std::invalid_argument("invalid direction name");
 }
 
-Place *OutdoorPlace::neighbor(OutdoorPlace::Direction dir)
+Place & OutdoorPlace::neighbor(OutdoorPlace::Direction dir)
 {
     static const struct { int x, y; } offset[] = {
         /*N*/{  0, -1 }, /*NE*/{  1, -1 }, /*E*/{  1,  0 }, /*SE*/{  1,  1 },
         /*S*/{  0,  1 }, /*SW*/{ -1,  1 }, /*W*/{ -1,  0 }, /*NW*/{ -1, -1 }
     };
     
-    return &controller.get_room(offset[dir].x, offset[dir].y);
+    return controller.get_room(offset[dir].x, offset[dir].y);
 }
 
 
