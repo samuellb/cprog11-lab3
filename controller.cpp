@@ -69,7 +69,12 @@ void Controller::add_place(Place & place)
     map.add(place);
 }
 
-Place & Controller::get_room(size_t x, size_t y)
+const Place & Controller::get_place(std::string name) const
+{
+    return map.get(name);
+}
+
+const Place & Controller::get_place(size_t x, size_t y) const
 {
     return map.get(x, y);
 }

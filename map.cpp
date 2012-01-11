@@ -20,7 +20,7 @@ Map::~Map()
     }
 }
 
-Place & Map::get(size_t x, size_t y) const
+const Place & Map::get(size_t x, size_t y) const
 {
     check_inside(x, y);
     
@@ -31,9 +31,9 @@ Place & Map::get(size_t x, size_t y) const
     return *grid[x*width + y];
 }
 
-Place & Map::get(std::string name) const
+const Place & Map::get(std::string name) const
 {
-    return *places[name];
+    return *const_cast<Map*>(this)->places[name];
 }
 
 void Map::set(size_t x, size_t y, Place & place)

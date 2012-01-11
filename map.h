@@ -14,8 +14,18 @@ class Map {
         Map(size_t w, size_t h);
         ~Map();
         
-        Place & get(size_t x, size_t y) const;
-        Place & get(std::string name) const;
+        const Place & get(size_t x, size_t y) const;
+        inline Place & get(size_t x, size_t y)
+        {
+            return const_cast<Place&>(get(x, y));
+        }
+        
+        const Place & get(std::string name) const;
+        inline Place & get(std::string name)
+        {
+            return const_cast<Place&>(get(name));
+        }
+        
         void set(size_t x, size_t y, Place & place);
         void add(Place & place);
         

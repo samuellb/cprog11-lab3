@@ -16,10 +16,21 @@ class Controller {
         ~Controller();
         
         void run_step();
-        Place & get_room(size_t x, size_t y);
         void load(std::string);
 
         void add_place(Place &);
+        
+        const Place & get_place(std::string) const;
+        inline Place & get_place(std::string name)
+        {
+            return const_cast<Place&>(get_place(name));
+        }
+        
+        const Place & get_place(size_t x, size_t y) const;
+        inline Place & get_place(size_t x, size_t y)
+        {
+            return const_cast<Place&>(get_place(x, y));
+        }
         
     private:
         Map map;
