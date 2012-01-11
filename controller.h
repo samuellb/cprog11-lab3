@@ -22,7 +22,7 @@ class Controller {
 
         inline void set_player(Player & p) { player = &p; }
 
-        void add_place(Place &);
+        void add_place(size_t x, size_t y, Place &);
         void add_actor(Actor & actor);
         
         const Place & get_place(std::string) const;

@@ -14,7 +14,6 @@ Place::Place(Controller & c,
     description_(d),
     actors()
 {
-    controller.add_place(*this);
 }
 
 Place::~Place()

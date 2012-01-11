@@ -71,7 +71,8 @@ void Loader::parse_outdoor(std::istream & is)
     is >> s;
     std::string description(s);
     
-    new OutdoorPlace(controller, name, description, x, y, allowed);
+    controller.add_place(x, y,
+        *new OutdoorPlace(controller, name, description, x, y, allowed));
 }
 
 Place & Loader::parse_place_reference(std::istream & is) const
@@ -83,7 +84,7 @@ Place & Loader::parse_place_reference(std::istream & is) const
 
 template<typename T> void Loader::parse_actor(std::istream & is)
 {
-    new T(controller, parse_place_reference(is));
+    controller.add_actor(*new T(controller, parse_place_reference(is)));
 }
 
 }

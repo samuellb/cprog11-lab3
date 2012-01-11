@@ -123,9 +123,9 @@ void Controller::run_step()
     //delete sword;
 }
 
-void Controller::add_place(Place & place)
+void Controller::add_place(size_t x, size_t y, Place & place)
 {
-    map.add(place);
+    map.set(x, y, place);
 }
 
 void Controller::add_actor(Actor & actor)
