@@ -24,7 +24,7 @@ Direction parse_direction(char c)
 Direction parse_direction(std::string s)
 {
     if (s.size() != 1) throw std::invalid_argument("direction must be 1 character long");
-    else return parse_direction(s[1]);
+    else return parse_direction(s[0]);
 }
 
 DirectionSet::DirectionSet(std::string allowed_str) :
