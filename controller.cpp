@@ -10,8 +10,10 @@
 #include "outdoor_place.h"
 #include "loader.h"
 
+#include <stdexcept>
 #include <fstream>
 #include <iostream>
+#include <sstream>
 #include <string>
 
 namespace game {
@@ -33,7 +35,6 @@ Controller::Controller() :
     commands["load"] = &Controller::command_load;
 
     Place * place = new OutdoorPlace(*this, "test", "afsfgsdf", 1, 1, static_cast<OutdoorPlace::Direction>(255));
-
     actors.push_back(new Player(*this, *place));
     actors.push_back(new Wolf(*this, *place));
     actors.push_back(new OldMan(*this, *place));
@@ -65,13 +66,21 @@ void Controller::load(std::string filename)
 
 void Controller::run_input()
 {
+    std::string line;
+    getline(std::cin, line);
+
     std::string command;
-    std::cin >> command;
+    std::stringstream ss(line);
+    ss >> command;
 
     if (commands.find(command) == commands.end()) {
         std::cerr << "Invalid command: " << command << std::endl;
     } else {
-        ((*this).*commands[command])(std::cin);
+        try {
+            ((*this).*commands[command])(ss);
+        } catch (std::invalid_argument &) {
+            std::cerr << "Invalid number of arguments to command: " << command << std::endl;
+        }
     }
 }
 
@@ -123,28 +132,49 @@ void Controller::command_quit(std::istream & is)
 
 void Controller::command_go(std::istream & is)
 {
-    std::cout << "we are moving..." << std::endl;
-    // Move player
+    std::string direction;
+    is >> direction;
+    if (is.peek() != EOF) {
+        throw std::invalid_argument("invalid number of arguments");
+    }
+
+    player->go(direction);
 }
 
 void Controller::command_talk(std::istream & is)
 {
-
+    std::string actor_name;
+    is >> actor_name;
+    if (is.peek() != EOF) {
+        throw std::invalid_argument("invalid number of arguments");
+    }
 }
 
 void Controller::command_fight(std::istream & is)
 {
-
+    std::string actor_name;
+    is >> actor_name;
+    if (is.peek() != EOF) {
+        throw std::invalid_argument("invalid number of arguments");
+    }
 }
 
 void Controller::command_drop(std::istream & is)
 {
-
+    std::string object_name;
+    is >> object_name;
+    if (is.peek() != EOF) {
+        throw std::invalid_argument("invalid number of arguments");
+    }
 }
 
 void Controller::command_pick_up(std::istream & is)
 {
-
+    std::string object_name;
+    is >> object_name;
+    if (is.peek() != EOF) {
+        throw std::invalid_argument("invalid number of arguments");
+    }
 }
 
 void Controller::command_save(std::istream & is)

@@ -8,7 +8,7 @@ Player::Player(Controller & c, Place & p) :
     Human(c, p),
     controller(c)
 {
-    
+    controller.set_player(*this);
 }
 
 Player::~Player()

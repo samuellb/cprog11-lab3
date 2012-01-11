@@ -20,6 +20,8 @@ class Controller {
         void run_game();
         void load(std::string);
 
+        inline void set_player(Player & p) { player = &p; }
+
         void add_place(Place &);
         
         const Place & get_place(std::string) const;
@@ -50,9 +52,14 @@ class Controller {
         void command_load(std::istream &);
 
     private:
+        Player * player;
         Map map;
         std::vector<Actor*> actors;
         std::map<std::string, controller_command> commands;
+
+        // disable copy and assignment
+        Controller(const Controller &);
+        Controller & operator=(const Controller &);
 };
 
 }
