@@ -34,11 +34,11 @@ Controller::Controller() :
     commands["save"] = &Controller::command_save;
     commands["load"] = &Controller::command_load;
 
-    DirectionSet allowed("NESW");
+/*    DirectionSet allowed("NESW");
     Place * place = new OutdoorPlace(*this, "test", "afsfgsdf", 1, 1, allowed);
     actors.push_back(new Player(*this, *place));
     actors.push_back(new Wolf(*this, *place));
-    actors.push_back(new OldMan(*this, *place));
+    actors.push_back(new OldMan(*this, *place));*/
 
     //Actor & test = place->get_actor("The kid");
     //std::cout << test.name() << std::endl;

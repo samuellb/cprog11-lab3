@@ -1,4 +1,6 @@
-outdoor 3 2 nesw	test_room	this_is_room_3x2
-player test_room
+outdoor 3 3 sw	start_room	This_is_the_starting_place
+outdoor 3 4 n	south_room	This_is_the_south_place
+outdoor 2 3 e	west_room	This_is_the_west_place
+player start_room
 end
 
