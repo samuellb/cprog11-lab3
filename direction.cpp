@@ -36,7 +36,7 @@ unsigned long DirectionSet::parse(std::string s)
     
     if (s != "-") {
         for (char c : s) {
-            allowed |= static_cast<unsigned long>(parse_direction(c));
+            allowed |= 1 << static_cast<unsigned long>(parse_direction(c));
         }
     }
     return allowed;
