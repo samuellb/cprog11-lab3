@@ -46,6 +46,8 @@ class Controller {
         void run_output() const;
         void run_input();
         void run_step();
+        
+        void check_args_end(std::istream & is) const;
 
         void command_quit(std::istream &);
         void command_go(std::istream &);
