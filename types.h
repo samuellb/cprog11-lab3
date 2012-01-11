@@ -5,20 +5,22 @@ namespace game {
 
 // All types are defined here so they can have circular depenencies
 class Actor;
-class Wolf;
-class Human;
-class Player;
-class OldMan;
-class Loader;
-class Controller;
-class Map;
-class Place;
-class Object;
-class Weapon;
-class Sword;
-class Key;
-class Container;
 class Backpack;
+class Container;
+class Controller;
+class DirectionSet;
+class Human;
+class Key;
+class Loader;
+class Map;
+class Object;
+class OldMan;
+class OutdoorPlace;
+class Place;
+class Player;
+class Sword;
+class Weapon;
+class Wolf;
 }
 
 #endif
