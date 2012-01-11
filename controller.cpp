@@ -17,10 +17,13 @@
 namespace game {
 
 Controller::Controller() :
+    is_running(true),
     map(10, 10),
     actors(),
     commands()
 {
+    commands["quit"] = &Controller::command_quit;
+    commands["exit"] = &Controller::command_quit;
     commands["go"] = &Controller::command_go;
     commands["talk"] = &Controller::command_talk;
     commands["fight"] = &Controller::command_fight;
@@ -28,7 +31,6 @@ Controller::Controller() :
     commands["pick_up"] = &Controller::command_pick_up;
     commands["save"] = &Controller::command_save;
     commands["load"] = &Controller::command_load;
-    //((*this).*commands["go"])(map);
 
     Place * place = new OutdoorPlace(*this, "test", "afsfgsdf", 1, 1, static_cast<OutdoorPlace::Direction>(255));
 
@@ -44,11 +46,33 @@ Controller::~Controller()
     }
 }
 
+void Controller::run_game()
+{
+    load("maps/map.txt");
+
+    while(is_running) {
+        run_input();
+        run_step();
+    }
+}
+
 void Controller::load(std::string filename)
 {
     std::ifstream map(filename);
     Loader loader(*this);
     loader.load(map);
+}
+
+void Controller::run_input()
+{
+    std::string command;
+    std::cin >> command;
+
+    if (commands.find(command) == commands.end()) {
+        std::cerr << "Invalid command: " << command << std::endl;
+    } else {
+        ((*this).*commands[command])(std::cin);
+    }
 }
 
 void Controller::run_step()
@@ -92,6 +116,11 @@ const Place & Controller::get_place(size_t x, size_t y) const
 /******************************************************************************
  * Available player commands
  *****************************************************************************/
+void Controller::command_quit(std::istream & is)
+{
+    is_running = false;
+}
+
 void Controller::command_go(std::istream & is)
 {
     std::cout << "we are moving..." << std::endl;

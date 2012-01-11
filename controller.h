@@ -17,7 +17,7 @@ class Controller {
         Controller();
         ~Controller();
         
-        void run_step();
+        void run_game();
         void load(std::string);
 
         void add_place(Place &);
@@ -35,6 +35,12 @@ class Controller {
         }
         
     protected:
+        bool is_running;
+
+        void run_input();
+        void run_step();
+
+        void command_quit(std::istream &);
         void command_go(std::istream &);
         void command_talk(std::istream &);
         void command_fight(std::istream &);

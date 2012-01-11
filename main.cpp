@@ -4,8 +4,7 @@
 
 int main() {
     game::Controller controller;
-    controller.load("maps/map.txt");
-    controller.run_step();
+    controller.run_game();
 
     return 0;
 }
