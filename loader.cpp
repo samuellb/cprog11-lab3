@@ -20,8 +20,8 @@ Loader::Loader(Controller & c) :
     controller(c)
 {
     parse_methods[std::string("outdoor")] = &Loader::parse_outdoor;
-    parse_methods[std::string("oldman")] = &Loader::parse_actor<Player>;
-    parse_methods[std::string("player")] = &Loader::parse_actor<OldMan>;
+    parse_methods[std::string("oldman")] = &Loader::parse_actor<OldMan>;
+    parse_methods[std::string("player")] = &Loader::parse_actor<Player>;
     parse_methods[std::string("wolf")] = &Loader::parse_actor<Wolf>;
 }
 
