@@ -26,6 +26,7 @@ class Actor {
 
         inline bool is_alive() { return health > 0; }
         inline Weapon * get_weapon() { return current_weapon; }
+        inline void set_weapon(Weapon * weapon) { current_weapon = weapon; }
         
         Place & place();
 

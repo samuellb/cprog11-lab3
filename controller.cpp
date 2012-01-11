@@ -52,6 +52,8 @@ void Controller::run_game()
 {
     load("maps/map.txt");
 
+    introduction();
+
     while (is_running) {
         run_output();
         run_input();
@@ -59,6 +61,16 @@ void Controller::run_game()
             run_step();
         //}
     }
+}
+
+/**
+ * Controller::introduction
+ *
+ * Print the game introduction.
+ */
+void Controller::introduction() const
+{
+    std::cout << "The kid wakes up from a nightmare, but where is he? He must find his home without getting killed..." << std::endl;
 }
 
 /**
@@ -164,7 +176,9 @@ void Controller::kill(Actor & actor)
 }
 
 /******************************************************************************
- * Available player commands
+ *
+ *  Available player commands
+ *
  *****************************************************************************/
 void Controller::command_quit(std::istream & is)
 {
