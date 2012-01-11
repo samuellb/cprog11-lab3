@@ -23,6 +23,8 @@ class Actor {
         virtual std::string type() = 0;
         virtual std::string description() = 0;
         virtual bool is_player();
+        
+        Place & place();
 
         int health;
         

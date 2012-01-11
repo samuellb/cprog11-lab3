@@ -39,6 +39,7 @@ class Controller {
     protected:
         bool is_running;
 
+        void run_output() const;
         void run_input();
         void run_step();
 

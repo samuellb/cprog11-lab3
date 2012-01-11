@@ -56,6 +56,7 @@ void Controller::run_game()
     load("maps/map.txt");
 
     while(is_running) {
+        run_output();
         run_input();
         run_step();
     }
@@ -66,6 +67,17 @@ void Controller::load(std::string filename)
     std::ifstream map(filename);
     Loader loader(*this);
     loader.load(map);
+}
+
+void Controller::run_output() const
+{
+    std::cout << player->place().description();
+    
+    std::cout << "You can go: ";
+    for (std::string dirname : player->place().directions()) {
+        std::cout << dirname << "  ";
+    }
+    std::cout << std::endl;
 }
 
 void Controller::run_input()

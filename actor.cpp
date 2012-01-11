@@ -50,6 +50,11 @@ bool Actor::is_player()
     return false;
 }
 
+Place & Actor::place()
+{
+    return *current_place;
+}
+
 
 }
 
