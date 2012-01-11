@@ -18,8 +18,18 @@ namespace game {
 
 Controller::Controller() :
     map(10, 10),
-    actors()
+    actors(),
+    commands()
 {
+    commands["go"] = &Controller::command_go;
+    commands["talk"] = &Controller::command_talk;
+    commands["fight"] = &Controller::command_fight;
+    commands["drop"] = &Controller::command_drop;
+    commands["pick_up"] = &Controller::command_pick_up;
+    commands["save"] = &Controller::command_save;
+    commands["load"] = &Controller::command_load;
+    //((*this).*commands["go"])(map);
+
     Place * place = new OutdoorPlace(*this, "test", "afsfgsdf", 1, 1, static_cast<OutdoorPlace::Direction>(255));
 
     actors.push_back(new Player(*this, *place));
@@ -77,6 +87,45 @@ const Place & Controller::get_place(std::string name) const
 const Place & Controller::get_place(size_t x, size_t y) const
 {
     return map.get(x, y);
+}
+
+/******************************************************************************
+ * Available player commands
+ *****************************************************************************/
+void Controller::command_go(std::istream & is)
+{
+    std::cout << "we are moving..." << std::endl;
+    // Move player
+}
+
+void Controller::command_talk(std::istream & is)
+{
+
+}
+
+void Controller::command_fight(std::istream & is)
+{
+
+}
+
+void Controller::command_drop(std::istream & is)
+{
+
+}
+
+void Controller::command_pick_up(std::istream & is)
+{
+
+}
+
+void Controller::command_save(std::istream & is)
+{
+
+}
+
+void Controller::command_load(std::istream & is)
+{
+
 }
 
 }

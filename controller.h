@@ -9,6 +9,8 @@
 
 namespace game {
 
+typedef void (Controller::*controller_command)(std::istream &);
+
 class Controller {
     
     public:
@@ -32,9 +34,19 @@ class Controller {
             return const_cast<Place&>(const_cast<const Controller*>(this)->get_place(x, y));
         }
         
+    protected:
+        void command_go(std::istream &);
+        void command_talk(std::istream &);
+        void command_fight(std::istream &);
+        void command_drop(std::istream &);
+        void command_pick_up(std::istream &);
+        void command_save(std::istream &);
+        void command_load(std::istream &);
+
     private:
         Map map;
         std::vector<Actor*> actors;
+        std::map<std::string, controller_command> commands;
 };
 
 }
