@@ -28,11 +28,6 @@ bool Human::pick_up(Object & object)
     return container->add(object);
 }
 
-std::string Human::type()
-{
-    return "Human";
-}
-
 }
 
 

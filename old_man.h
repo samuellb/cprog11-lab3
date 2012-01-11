@@ -15,8 +15,9 @@ class OldMan : public Human {
 
         virtual void act();
 
-        virtual std::string name();
-        virtual std::string description();
+        virtual std::string type() const;
+        virtual std::string name() const;
+        virtual std::string description() const;
     protected:
         Controller &controller;
 };

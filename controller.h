@@ -19,6 +19,7 @@ class Controller {
         
         void run_game();
         void load(std::string);
+        void save(std::string);
 
         inline void set_player(Player & p) { player = &p; }
 

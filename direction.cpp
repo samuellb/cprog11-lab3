@@ -52,6 +52,16 @@ bool DirectionSet::operator[](unsigned int dir) const
     return bits[dir];
 }
 
+std::string DirectionSet::to_string() const
+{
+    std::string s;
+    if ((*this)[Direction::N]) s += "n";
+    if ((*this)[Direction::E]) s += "e";
+    if ((*this)[Direction::S]) s += "s";
+    if ((*this)[Direction::W]) s += "w";
+    return s;
+}
+
 }
 
 

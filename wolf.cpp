@@ -21,17 +21,17 @@ void Wolf::act()
 
 }
 
-std::string Wolf::name()
+std::string Wolf::type() const
+{
+    return "wolf";
+}
+
+std::string Wolf::name() const
 {
     return "Wolfy";
 }
 
-std::string Wolf::type()
-{
-    return "Wolf";
-}
-
-std::string Wolf::description()
+std::string Wolf::description() const
 {
     return "A mad wolf ready to kill...";
 }

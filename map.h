@@ -2,6 +2,7 @@
 #define MAP_H
 
 #include <cstddef>
+#include <ostream>
 #include <map>
 #include <vector>
 #include "types.h"
@@ -28,6 +29,8 @@ class Map {
         
         void set(size_t x, size_t y, Place & place);
         void add(Place & place);
+        
+        void save(std::ostream & os) const;
         
     private:
         size_t width, height;

@@ -19,6 +19,11 @@ Woods::~Woods()
 {
 }
 
+std::string Woods::type() const
+{
+    return "woods";
+}
+
 void Woods::chop(Actor & actor)
 {
     printf("chopped by %s\n", actor.name().c_str());

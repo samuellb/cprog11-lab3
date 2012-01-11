@@ -20,12 +20,17 @@ void OldMan::act()
 {
 }
 
-std::string OldMan::name()
+std::string OldMan::type() const
 {
     return "oldman";
 }
 
-std::string OldMan::description()
+std::string OldMan::name() const
+{
+    return "oldman";
+}
+
+std::string OldMan::description() const
 {
     return "The narrator of this story...";
 }

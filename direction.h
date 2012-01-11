@@ -16,6 +16,7 @@ class DirectionSet {
         DirectionSet(std::string);
         bool operator[](Direction) const;
         bool operator[](unsigned int) const;
+        std::string to_string() const;
     private:
         std::bitset<4> bits;
         static unsigned long parse(std::string);

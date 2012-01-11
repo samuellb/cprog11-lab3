@@ -15,9 +15,9 @@ class Wolf : public Actor {
 
         virtual void act();
 
-        virtual std::string name();
-        virtual std::string type();
-        virtual std::string description();
+        virtual std::string type() const;
+        virtual std::string name() const;
+        virtual std::string description() const;
 
     protected:
         Controller &controller;

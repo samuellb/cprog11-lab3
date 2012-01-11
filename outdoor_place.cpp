@@ -49,6 +49,17 @@ Place & OutdoorPlace::neighbor(Direction dir) const
     return controller.get_place(x + offset[dir].x, y + offset[dir].y);
 }
 
+std::string OutdoorPlace::type() const
+{
+    return "outdoor";
+}
+
+void OutdoorPlace::save_properties(std::ostream & os) const
+{
+    os << x << " " << y << " " << allowed.to_string();
+}
+
+
 }
 
 

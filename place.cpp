@@ -108,6 +108,32 @@ void Place::perform_action(std::string name, Actor & actor)
     (this->*action_methods[name])(actor);
 }
 
+void Place::save(std::ostream & os) const
+{
+    os << type() << " ";
+    save_properties(os); // implemented by subclasses
+    os << " " << name_ << " " << description_ << std::endl;
+    
+    save_actors(os);
+    save_objects(os);
+    os << std::endl;
+}
+
+void Place::save_actors(std::ostream & os) const
+{
+    for (auto kv : actors) {
+        kv.second->save(os);
+    }
+}
+
+void Place::save_objects(std::ostream & os) const
+{
+    for (auto kv : objects) {
+        // TODO
+        //kv.second->save(os);
+    }
+}
+
 
 }
 

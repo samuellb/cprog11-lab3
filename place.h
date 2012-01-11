@@ -1,6 +1,7 @@
 #ifndef PLACE_H
 #define PLACE_H
 
+#include <ostream>
 #include <set>
 #include <map>
 #include <string>
@@ -32,6 +33,10 @@ class Place {
         bool has_action(std::string) const;
         void perform_action(std::string, Actor &);
         
+        void save(std::ostream &) const;
+        virtual std::string type() const = 0;
+        virtual void save_properties(std::ostream &) const = 0;
+        
     protected:
         Controller & controller;
         const std::string name_, description_;
@@ -44,6 +49,9 @@ class Place {
         
     private:
         std::map<std::string, void (Place::*)(Actor &)> action_methods;
+        
+        void save_actors(std::ostream &) const;
+        void save_objects(std::ostream &) const;
 };
 
 }

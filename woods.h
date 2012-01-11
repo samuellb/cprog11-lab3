@@ -14,6 +14,8 @@ class Woods : public OutdoorPlace {
         Woods(Controller &, std::string, std::string, size_t, size_t, DirectionSet);
         virtual ~Woods();
         
+        virtual std::string type() const;
+        
     private:
         void chop(Actor & actor);
 };

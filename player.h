@@ -16,8 +16,9 @@ class Player : public Human {
         virtual void act();
         virtual void talk(Actor &);
 
-        virtual std::string name();
-        virtual std::string description();
+        virtual std::string type() const;
+        virtual std::string name() const;
+        virtual std::string description() const;
         virtual bool is_player();
     protected:
         Controller &controller;

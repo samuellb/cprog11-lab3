@@ -80,9 +80,22 @@ void Controller::introduction() const
  */
 void Controller::load(std::string filename)
 {
-    std::ifstream map(filename);
+    std::ifstream file(filename);
     Loader loader(*this);
-    loader.load(map);
+    loader.load(file);
+}
+
+/**
+ * Controller::save
+ *
+ * Saves the game, every actor, object and place.
+ * The file format is compatible with load()
+ */
+void Controller::save(std::string filename)
+{
+    std::ofstream file(filename);
+    map.save(file);
+    file << "end" << std::endl;
 }
 
 /**
@@ -257,6 +270,9 @@ void Controller::command_save(std::istream & is)
     std::string save_name;
     is >> save_name;
     check_args_end(is);
+    
+    save("saves/" + save_name);
+    std::cout << "Game saved." << std::endl;
 }
 
 void Controller::command_load(std::istream & is)
@@ -264,6 +280,13 @@ void Controller::command_load(std::istream & is)
     std::string save_name;
     is >> save_name;
     check_args_end(is);
+    
+    try {
+        load("saves/" + save_name);
+        std::cout << "Game loaded." << std::endl;
+    } catch (std::exception &) {
+        std::cerr << "Failed to load game." << std::endl;
+    }
 }
 
 }

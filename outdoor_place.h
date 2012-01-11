@@ -1,6 +1,7 @@
 #ifndef OUTDOOR_PLACE_H
 #define OUTDOOR_PLACE_H
 
+#include <ostream>
 #include <set>
 #include <string>
 #include "types.h"
@@ -23,6 +24,9 @@ class OutdoorPlace : public Place {
         Place & neighbor(Direction direction) const;
         
         // TODO pick_up / drop item
+        
+        virtual std::string type() const;
+        virtual void save_properties(std::ostream &) const;
         
     private:
         const size_t x, y;

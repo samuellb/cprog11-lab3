@@ -31,12 +31,17 @@ void Player::talk(Actor & actor)
     std::cout << "the player cannot talk, " << actor.name() << " says something" << std::endl;
 }
 
-std::string Player::name()
+std::string Player::type() const
+{
+    return "player";
+}
+
+std::string Player::name() const
 {
     return "kid";
 }
 
-std::string Player::description()
+std::string Player::description() const
 {
     return "The main character of the story";
 }

@@ -17,9 +17,9 @@ class Human : public Actor {
         virtual bool drop(Object &);
         virtual bool pick_up(Object &);
 
-        virtual std::string name() = 0;
-        virtual std::string type();
-        virtual std::string description() = 0;
+        virtual std::string name() const = 0;
+        virtual std::string type() const = 0;
+        virtual std::string description() const = 0;
 
     protected:
         Controller &controller;

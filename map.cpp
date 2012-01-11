@@ -60,6 +60,13 @@ void Map::check_inside(size_t x, size_t y) const
     }
 }
 
+void Map::save(std::ostream & os) const
+{
+    for (auto it : places) {
+        it.second->save(os);
+    }
+}
+
 
 }
 
