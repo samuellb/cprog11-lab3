@@ -23,7 +23,7 @@ Place::~Place()
 
 void Place::enter(Actor & actor)
 {
-    actors.insert(std::pair<std::string, Actor*>(actor.name(), &actor));
+    actors.insert(std::make_pair(actor.name(), &actor));
 }
 
 void Place::leave(Actor & actor)

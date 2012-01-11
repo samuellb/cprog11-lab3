@@ -128,6 +128,13 @@ void Controller::add_place(Place & place)
     map.add(place);
 }
 
+void Controller::add_actor(Actor & actor)
+{
+    Place & place = actor.place();
+    actors.push_back(&actor);
+    place.enter(actor);
+}
+
 const Place & Controller::get_place(std::string name) const
 {
     return map.get(name);
