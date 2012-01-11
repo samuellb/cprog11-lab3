@@ -38,9 +38,7 @@ Controller::Controller() :
 
 Controller::~Controller()
 {
-    for (auto actor : actors) {
-        delete actor;
-    }
+    clear();
 }
 
 /**
@@ -80,6 +78,7 @@ void Controller::introduction() const
  */
 void Controller::load(std::string filename)
 {
+    clear();
     std::ifstream file(filename);
     Loader loader(*this);
     loader.load(file);
@@ -96,6 +95,23 @@ void Controller::save(std::string filename)
     std::ofstream file(filename);
     map.save(file);
     file << "end" << std::endl;
+}
+
+/**
+ * Controller::clear
+ *
+ * Deletes all game state (map, actors, objects...)
+ */
+void Controller::clear()
+{
+    map.clear();
+    
+    for (auto actor : actors) {
+        delete actor;
+    }
+    actors.clear();
+    
+    // TODO delete items
 }
 
 /**

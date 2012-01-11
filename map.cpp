@@ -15,9 +15,7 @@ Map::Map(size_t w, size_t h) :
 
 Map::~Map()
 {
-    for (auto keyvalue : places) {
-        delete keyvalue.second;
-    }
+    clear();
 }
 
 const Place & Map::get(size_t x, size_t y) const
@@ -64,6 +62,20 @@ void Map::save(std::ostream & os) const
 {
     for (auto it : places) {
         it.second->save(os);
+    }
+}
+
+void Map::clear()
+{
+    // Delete places vector
+    for (auto keyvalue : places) {
+        delete keyvalue.second;
+    }
+    places.clear();
+    
+    // Clear the grid
+    for (size_t i = 0; i < grid.size(); i++) {
+        grid[i] = NULL;
     }
 }
 
