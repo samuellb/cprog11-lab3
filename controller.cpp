@@ -117,8 +117,14 @@ void Controller::run_input()
     ss >> command;
 
     if (commands.find(command) == commands.end()) {
-        std::cerr << "Invalid command: " << command << std::endl;
+        // Check if it's an action in the current place
+        if (player->place().has_action(command)) {
+            player->place().perform_action(command, *player);
+        } else {
+            std::cerr << "Invalid command: " << command << std::endl;
+        }
     } else {
+        // Global command
         try {
             ((*this).*commands[command])(ss);
         } catch (std::invalid_argument &) {
