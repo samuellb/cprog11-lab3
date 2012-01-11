@@ -13,15 +13,15 @@ class Weapon : public Object {
         Weapon(Controller &, int);
         virtual ~Weapon();
 
-        virtual int weight() = 0;
-        virtual int volume() = 0;
-        virtual int price() = 0;
+        virtual int weight() const = 0;
+        virtual int volume() const = 0;
+        virtual int price() const = 0;
 
         virtual std::string name() const = 0;
-        virtual std::string type() const;
+        virtual std::string type() const = 0;
         virtual std::string description() const = 0;
 
-        inline int get_damage() { return damage; }
+        inline int get_damage() const { return damage; }
 
     protected:
         unsigned int damage;

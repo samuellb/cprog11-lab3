@@ -13,12 +13,12 @@ class Backpack : public Container {
         Backpack(Controller &c);
         virtual ~Backpack();
 
-        virtual int weight();
-        virtual int volume();
-        virtual int price();
+        virtual int weight() const;
+        virtual int volume() const;
+        virtual int price() const;
 
-        virtual int hold_weight();
-        virtual int hold_volume();
+        virtual int hold_weight() const;
+        virtual int hold_volume() const;
         //virtual bool add(Object &);
         //virtual bool remove(Object &);
 

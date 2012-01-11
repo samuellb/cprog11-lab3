@@ -28,6 +28,11 @@ bool Human::pick_up(Object & object)
     return container->add(object);
 }
 
+bool Human::has_object(std::string name) const
+{
+    return container->contains(name);
+}
+
 }
 
 

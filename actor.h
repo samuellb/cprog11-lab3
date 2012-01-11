@@ -14,16 +14,18 @@ class Actor {
         virtual ~Actor();
 
         virtual void act() = 0;
-        virtual void go(std::string);
+        void go(std::string);
+        void teleport(std::string);
         virtual void talk(Actor &);
         virtual void fight(Actor &);
         virtual bool drop(Object &);
         virtual bool pick_up(Object &);
+        virtual bool has_object(std::string) const;
 
         virtual std::string name() const = 0;
         virtual std::string type() const = 0;
         virtual std::string description() const = 0;
-        virtual bool is_player();
+        virtual bool is_player() const;
 
         inline bool is_alive() { return health > 0; }
         inline Weapon * get_weapon() { return current_weapon; }
@@ -42,6 +44,8 @@ class Actor {
         Controller &controller;
         
     private:
+        void go(Place & new_place);
+        
         // disable copy and assignment
         Actor(const Actor &);
         Actor & operator=(const Actor &);

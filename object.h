@@ -12,9 +12,9 @@ class Object {
         Object(Controller &c);
         virtual ~Object() = 0;
 
-        virtual int weight() = 0;
-        virtual int volume() = 0;
-        virtual int price() = 0;
+        virtual int weight() const = 0;
+        virtual int volume() const = 0;
+        virtual int price() const = 0;
 
         virtual std::string name() const = 0;
         virtual std::string type() const = 0;

@@ -13,9 +13,9 @@ class Sword : public Weapon {
         Sword(Controller &);
         virtual ~Sword();
 
-        virtual int weight();
-        virtual int volume();
-        virtual int price();
+        virtual int weight() const;
+        virtual int volume() const;
+        virtual int price() const;
 
         virtual std::string name() const;
         virtual std::string type() const;

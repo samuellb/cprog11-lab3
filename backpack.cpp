@@ -16,28 +16,28 @@ Backpack::~Backpack()
 
 }
 
-int Backpack::weight()
+int Backpack::weight() const
 {
     return 3;
 }
 
-int Backpack::volume()
+int Backpack::volume() const
 {
     return used_volume;
 }
 
-int Backpack::price()
+int Backpack::price() const
 {
     return 1;
 }
 
 
-int Backpack::hold_weight()
+int Backpack::hold_weight() const
 {
     return 100;
 }
 
-int Backpack::hold_volume()
+int Backpack::hold_volume() const
 {
     return 100;
 }

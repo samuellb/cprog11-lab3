@@ -13,9 +13,9 @@ class Key : public Object {
         Key(Controller &c);
         ~Key();
 
-        virtual int weight();
-        virtual int volume();
-        virtual int price();
+        virtual int weight() const;
+        virtual int volume() const;
+        virtual int price() const;
 
         virtual std::string name() const;
         virtual std::string type() const;

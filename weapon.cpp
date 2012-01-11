@@ -17,9 +17,4 @@ Weapon::~Weapon()
 
 }
 
-std::string Weapon::type() const
-{
-    return "Weapon";
-}
-
 }

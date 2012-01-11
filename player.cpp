@@ -16,7 +16,7 @@ Player::~Player()
 
 }
 
-bool Player::is_player()
+bool Player::is_player() const
 {
     return true;
 }

@@ -15,17 +15,17 @@ Key::~Key()
 
 }
 
-int Key::weight()
+int Key::weight() const
 {
     return 1;
 }
 
-int Key::volume()
+int Key::volume() const
 {
     return 1;
 }
 
-int Key::price()
+int Key::price() const
 {
     return 100;
 }

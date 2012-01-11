@@ -20,11 +20,21 @@ Actor::~Actor()
 
 void Actor::go(std::string direction)
 {
-    Place & new_place = current_place->neighbor(direction);
+    go(current_place->neighbor(direction));
+}
+
+void Actor::go(Place & new_place)
+{
     current_place->leave(*this);
     new_place.enter(*this);
     current_place = &new_place;
 }
+
+void Actor::teleport(std::string name)
+{
+    go(controller.get_place(name));
+}
+
 
 void Actor::talk(Actor & actor)
 {
@@ -86,7 +96,12 @@ bool Actor::pick_up(Object &)
     return false;
 }
 
-bool Actor::is_player()
+bool Actor::has_object(std::string) const
+{
+    return false;
+}
+
+bool Actor::is_player() const
 {
     return false;
 }

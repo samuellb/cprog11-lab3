@@ -16,17 +16,17 @@ Sword::~Sword()
 
 }
 
-int Sword::weight()
+int Sword::weight() const
 {
     return 13;
 }
 
-int Sword::volume()
+int Sword::volume() const
 {
     return 10;
 }
 
-int Sword::price()
+int Sword::price() const
 {
     return 140;
 }
