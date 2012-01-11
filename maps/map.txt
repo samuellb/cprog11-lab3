@@ -1,4 +1,4 @@
-outdoor 3 2	test_room	this_is_room_3x2
+outdoor 3 2 nesw	test_room	this_is_room_3x2
 player test_room
 end
 

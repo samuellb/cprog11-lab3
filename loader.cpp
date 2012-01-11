@@ -63,13 +63,13 @@ void Loader::parse_outdoor(std::istream & is)
     is >> x >> y;
     
     is >> s;
+    DirectionSet allowed(s);
+    
+    is >> s;
     std::string name(s);
     
     is >> s;
     std::string description(s);
-    
-    // TODO
-    OutdoorPlace::Direction allowed = static_cast<OutdoorPlace::Direction>(255);
     
     new OutdoorPlace(controller, name, description, x, y, allowed);
 }
