@@ -1,10 +1,10 @@
-woods 3 4 n south_woods This_is_the_woods_in_the_south
-player south_woods
+woods 3 4 n "south woods" "This is the woods in the south"
+player "south woods"
 
-outdoor 3 3 sw start_room This_is_the_starting_place
-oldman start_room
+outdoor 3 3 sw "start room" "This is the starting place"
+oldman "start room"
 
-outdoor 2 3 e west_room This_is_the_west_place
-wolf west_room
+outdoor 2 3 e "west room" "This is the west place"
+wolf "west room"
 
 end

@@ -12,7 +12,7 @@
 #include "loader.h"
 
 #include <iostream>
-#include <cstring>
+#include <stdexcept>
 
 namespace game {
 
@@ -57,6 +57,17 @@ void Loader::load(std::istream & is)
     is.exceptions(prev_exc);
 }
 
+std::string Loader::read_string(std::istream & is) const
+{
+    char c;
+    is >> c;
+    if (c != '"') throw std::invalid_argument("expected a string");
+    
+    std::string s;
+    std::getline(is, s, '"');
+    return s;
+}
+
 template<typename T> void Loader::parse_xy_place(std::istream & is)
 {
     char s[200];
@@ -67,11 +78,8 @@ template<typename T> void Loader::parse_xy_place(std::istream & is)
     is >> s;
     DirectionSet allowed(s);
     
-    is >> s;
-    std::string name(s);
-    
-    is >> s;
-    std::string description(s);
+    std::string name = read_string(is);
+    std::string description = read_string(is);
     
     controller.add_place(x, y,
         *new T(controller, name, description, x, y, allowed));
@@ -79,9 +87,7 @@ template<typename T> void Loader::parse_xy_place(std::istream & is)
 
 Place & Loader::parse_place_reference(std::istream & is) const
 {
-    char name[200];
-    is >> name;
-    return controller.get_place(name);
+    return controller.get_place(read_string(is));
 }
 
 template<typename T> void Loader::parse_actor(std::istream & is)

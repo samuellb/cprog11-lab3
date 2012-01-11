@@ -98,7 +98,7 @@ Place & Actor::place()
 
 void Actor::save(std::ostream & os) const
 {
-    os << type() << " " << current_place->name() << std::endl;
+    os << type() << " \"" << current_place->name() << "\"" << std::endl;
 }
 
 

@@ -112,7 +112,7 @@ void Place::save(std::ostream & os) const
 {
     os << type() << " ";
     save_properties(os); // implemented by subclasses
-    os << " " << name_ << " " << description_ << std::endl;
+    os << " \"" << name_ << "\" \"" << description_ << "\"" << std::endl;
     
     save_actors(os);
     save_objects(os);

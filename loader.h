@@ -21,6 +21,7 @@ class Loader {
         typedef void (Loader::*parse_method_type)(std::istream & is);
         std::map<std::string, parse_method_type> parse_methods;
         
+        std::string read_string(std::istream & is) const;
         template<typename T> void parse_xy_place(std::istream & is);
         template<typename T> void parse_actor(std::istream & is);
         Place & parse_place_reference(std::istream & is) const;
