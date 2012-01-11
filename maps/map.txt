@@ -1,5 +1,5 @@
 outdoor 3 3 sw	start_room	This_is_the_starting_place
-outdoor 3 4 n	south_room	This_is_the_south_place
+woods   3 4 n	south_woods	This_is_the_woods_in_the_south
 outdoor 2 3 e	west_room	This_is_the_west_place
 oldman start_room
 wolf west_room

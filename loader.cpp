@@ -8,6 +8,7 @@
 #include "wolf.h"
 #include "old_man.h"
 #include "outdoor_place.h"
+#include "woods.h"
 #include "loader.h"
 
 #include <iostream>
@@ -19,7 +20,8 @@ Loader::Loader(Controller & c) :
     parse_methods(),
     controller(c)
 {
-    parse_methods[std::string("outdoor")] = &Loader::parse_outdoor;
+    parse_methods[std::string("outdoor")] = &Loader::parse_xy_place<OutdoorPlace>;
+    parse_methods[std::string("woods")] = &Loader::parse_xy_place<Woods>;
     parse_methods[std::string("oldman")] = &Loader::parse_actor<OldMan>;
     parse_methods[std::string("player")] = &Loader::parse_actor<Player>;
     parse_methods[std::string("wolf")] = &Loader::parse_actor<Wolf>;
@@ -55,7 +57,7 @@ void Loader::load(std::istream & is)
     is.exceptions(prev_exc);
 }
 
-void Loader::parse_outdoor(std::istream & is)
+template<typename T> void Loader::parse_xy_place(std::istream & is)
 {
     char s[200];
     int x, y;
@@ -72,7 +74,7 @@ void Loader::parse_outdoor(std::istream & is)
     std::string description(s);
     
     controller.add_place(x, y,
-        *new OutdoorPlace(controller, name, description, x, y, allowed));
+        *new T(controller, name, description, x, y, allowed));
 }
 
 Place & Loader::parse_place_reference(std::istream & is) const

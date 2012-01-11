@@ -28,6 +28,10 @@ class Place {
         
         // TODO pick_up / drop item
         
+        std::set<std::string> actions() const;
+        bool has_action(std::string) const;
+        void perform_action(std::string, Actor &);
+        
     protected:
         Controller & controller;
         const std::string name_, description_;
@@ -35,6 +39,11 @@ class Place {
         std::map<std::string, Object*> objects;
         
         bool has_nonplayer_actors() const;
+        
+        void add_action(std::string, void (Place::*)(Actor &));
+        
+    private:
+        std::map<std::string, void (Place::*)(Actor &)> action_methods;
 };
 
 }

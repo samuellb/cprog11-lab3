@@ -14,7 +14,8 @@ Place::Place(Controller & c,
     name_(n),
     description_(d),
     actors(),
-    objects()
+    objects(),
+    action_methods()
 {
 }
 
@@ -78,6 +79,33 @@ bool Place::has_nonplayer_actors() const
     if (actors.size() == 1 && (*actors.begin()).second->is_player()) return false;
     
     return true; // otherwise there must be a non-player actor
+}
+
+
+/* Actions */
+void Place::add_action(std::string name, void (Place::*method)(Actor &))
+{
+    action_methods.insert(std::make_pair(name, method));
+}
+
+std::set<std::string> Place::actions() const
+{
+    std::set<std::string> names;
+    for (auto kv : action_methods)
+    {
+        names.insert(kv.first);
+    }
+    return names;
+}
+
+bool Place::has_action(std::string name) const
+{
+    return action_methods.find(name) != action_methods.end();
+}
+
+void Place::perform_action(std::string name, Actor & actor)
+{
+    (this->*action_methods[name])(actor);
 }
 
 

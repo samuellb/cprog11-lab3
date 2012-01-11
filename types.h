@@ -21,6 +21,7 @@ class Player;
 class Sword;
 class Weapon;
 class Wolf;
+class Woods;
 }
 
 #endif
