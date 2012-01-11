@@ -2,7 +2,7 @@
 #define MAP_H
 
 #include <cstddef>
-#include <set>
+#include <map>
 #include <vector>
 #include "types.h"
 
@@ -14,16 +14,17 @@ class Map {
         Map(size_t w, size_t h);
         ~Map();
         
-        Place & get(size_t x, size_t y);
+        Place & get(size_t x, size_t y) const;
+        Place & get(std::string name) const;
         void set(size_t x, size_t y, Place & place);
         void add(Place & place);
         
     private:
         size_t width, height;
         std::vector<Place*> grid;
-        std::set<Place*> places;
+        std::map<std::string, Place*> places;
         
-        void check_inside(size_t x, size_t y);
+        void check_inside(size_t x, size_t y) const;
         
         // disable copy and assignment
         Map & operator=(const Map &);

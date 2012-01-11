@@ -15,12 +15,12 @@ Map::Map(size_t w, size_t h) :
 
 Map::~Map()
 {
-    for (auto place : places) {
-        delete place;
+    for (auto keyvalue : places) {
+        delete keyvalue.second;
     }
 }
 
-Place & Map::get(size_t x, size_t y)
+Place & Map::get(size_t x, size_t y) const
 {
     check_inside(x, y);
     
@@ -29,6 +29,11 @@ Place & Map::get(size_t x, size_t y)
     }
     
     return *grid[x*width + y];
+}
+
+Place & Map::get(std::string name) const
+{
+    return *places[name];
 }
 
 void Map::set(size_t x, size_t y, Place & place)
@@ -45,10 +50,10 @@ void Map::set(size_t x, size_t y, Place & place)
 
 void Map::add(Place & place)
 {
-    places.insert(&place);
+    places.insert(std::make_pair(place.name(), &place));
 }
 
-void Map::check_inside(size_t x, size_t y)
+void Map::check_inside(size_t x, size_t y) const
 {
     if (x >= width || y >= height) {
         throw std::out_of_range("map coordinate is out of range");
