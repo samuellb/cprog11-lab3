@@ -29,6 +29,11 @@ class Actor {
     protected:
         Place * current_place;
         Controller &controller;
+        
+    private:
+        // disable copy and assignment
+        Actor(const Actor &);
+        Actor & operator=(const Actor &);
 };
 
 }

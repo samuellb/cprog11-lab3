@@ -35,12 +35,12 @@ void Actor::fight(Actor & actor)
 
 }
 
-bool Actor::drop(Object & object)
+bool Actor::drop(Object &)
 {
     return false;
 }
 
-bool Actor::pick_up(Object & object)
+bool Actor::pick_up(Object &)
 {
     return false;
 }

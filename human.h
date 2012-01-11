@@ -24,6 +24,11 @@ class Human : public Actor {
     protected:
         Controller &controller;
         Container * container;
+        
+    private:
+        // disable copy and assignment
+        Human(const Human &);
+        Human & operator=(const Human &);
 };
 
 }
