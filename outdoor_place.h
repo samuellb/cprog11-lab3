@@ -19,10 +19,10 @@ class OutdoorPlace : public Place {
                      size_t x_, size_t y_, Direction allowed_);
         virtual ~OutdoorPlace();
         
-        virtual std::set<std::string> & directions();
-        virtual Place & neighbor(std::string direction);
-        Place & neighbor(Direction direction);
-        Direction parse_direction(std::string direction);
+        virtual std::set<std::string> & directions() const;
+        virtual Place & neighbor(std::string direction) const;
+        Place & neighbor(Direction direction) const;
+        Direction parse_direction(std::string direction) const;
         
         // TODO pick_up / drop item
         

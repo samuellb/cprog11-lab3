@@ -6,11 +6,11 @@
 
 namespace game {
 
-Place::Place(Controller & controller_,
-             std::string name_, std::string description_text_) :
-    controller(controller_),
-    name(name_),
-    description_text(description_text_),
+Place::Place(Controller & c,
+             std::string n, std::string d) :
+    controller(c),
+    name_(n),
+    description_(d),
     actors()
 {
     controller.add_place(*this);
@@ -30,11 +30,16 @@ void Place::leave(Actor & actor)
     actors.erase(&actor);
 }
 
-std::string Place::description()
+std::string Place::name() const
+{
+    return name_;
+}
+
+std::string Place::description() const
 {
     std::stringstream ss;
     
-    ss << description_text << std::endl;
+    ss << description_ << std::endl;
     
     if (has_nonplayer_actors()) {
         ss << "You see:" << std::endl;
@@ -51,7 +56,7 @@ std::string Place::description()
     return ss.str();
 }
 
-bool Place::has_nonplayer_actors()
+bool Place::has_nonplayer_actors() const
 {
     if (actors.empty()) return false;
     

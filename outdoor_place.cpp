@@ -11,11 +11,11 @@ static const char *direction_names[] = {
     "N", "NE", "E", "SE", "S", "SW", "W", "NW"
 };
 
-OutdoorPlace::OutdoorPlace(Controller & controller_,
-                           std::string name_, std::string description_text_,
+OutdoorPlace::OutdoorPlace(Controller & controller,
+                           std::string name, std::string description,
                            size_t x_, size_t y_,
                            OutdoorPlace::Direction allowed_) :
-    Place(controller_, name_, description_text_),
+    Place(controller, name, description),
     x(x_),
     y(y_),
     allowed(allowed_)
@@ -26,7 +26,7 @@ OutdoorPlace::~OutdoorPlace()
 {
 }
 
-std::set<std::string> & OutdoorPlace::directions()
+std::set<std::string> & OutdoorPlace::directions() const
 {
     std::set<std::string> & set = *new std::set<std::string>();
     
@@ -39,12 +39,12 @@ std::set<std::string> & OutdoorPlace::directions()
     return set;
 }
 
-Place & OutdoorPlace::neighbor(std::string direction)
+Place & OutdoorPlace::neighbor(std::string direction) const
 {
     return neighbor(parse_direction(direction));
 }
 
-Place & OutdoorPlace::neighbor(OutdoorPlace::Direction dir)
+Place & OutdoorPlace::neighbor(OutdoorPlace::Direction dir) const
 {
     static const struct { int x, y; } offset[] = {
         /*N*/{  0, -1 }, /*NE*/{  1, -1 }, /*E*/{  1,  0 }, /*SE*/{  1,  1 },
@@ -54,7 +54,7 @@ Place & OutdoorPlace::neighbor(OutdoorPlace::Direction dir)
     return controller.get_room(x + offset[dir].x, y + offset[dir].y);
 }
 
-OutdoorPlace::Direction OutdoorPlace::parse_direction(std::string direction)
+OutdoorPlace::Direction OutdoorPlace::parse_direction(std::string direction) const
 {
     for (size_t dir = 0; dir < 8; dir++) {
         if (direction == direction_names[dir]) {

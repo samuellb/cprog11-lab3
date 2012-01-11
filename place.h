@@ -10,26 +10,27 @@ namespace game {
 class Place {
     
     public:
-        Place(Controller & controller_,
-              std::string name_, std::string description_text_);
+        Place(Controller & controller,
+              std::string name, std::string description);
         virtual ~Place();
         
-        virtual void enter(Actor & actor);
-        virtual void leave(Actor & actor);
+        virtual void enter(Actor &);
+        virtual void leave(Actor &);
         
-        virtual std::set<std::string> & directions() = 0;
-        virtual Place & neighbor(std::string direction) = 0;
+        virtual std::set<std::string> & directions() const = 0;
+        virtual Place & neighbor(std::string) const = 0;
         
-        std::string description();
+        std::string name() const;
+        std::string description() const;
         
         // TODO pick_up / drop item
         
     protected:
         Controller & controller;
-        const std::string name, description_text;
+        const std::string name_, description_;
         std::set<Actor*> actors;
         
-        bool has_nonplayer_actors();
+        bool has_nonplayer_actors() const;
 };
 
 }
