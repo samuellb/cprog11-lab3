@@ -2,6 +2,7 @@
 #define DIRECTION_H
 
 #include <bitset>
+#include <string>
 
 namespace game {
 
@@ -9,7 +10,7 @@ enum Direction { N, E, S, W };
 
 Direction parse_direction(char);
 Direction parse_direction(std::string);
-extern const char *direction_names[];
+extern const std::string direction_names[];
 
 class DirectionSet {
     public:

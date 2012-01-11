@@ -1,12 +1,13 @@
 #include <stdexcept>
 #include <cctype>
+#include <string>
 
 #include "direction.h"
 
 namespace game {
 
-const char *direction_names[] = {
-    "N", "E", "S", "W"
+const std::string direction_names[] = {
+    "north", "east", "south", "west"
 };
 
 Direction parse_direction(char c)
@@ -23,7 +24,7 @@ Direction parse_direction(char c)
 
 Direction parse_direction(std::string s)
 {
-    if (s.size() != 1) throw std::invalid_argument("direction must be 1 character long");
+    if (s.size() < 1) throw std::invalid_argument("direction must be 1 character long");
     else return parse_direction(s[0]);
 }
 
