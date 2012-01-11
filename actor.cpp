@@ -9,7 +9,7 @@ Actor::Actor(Controller &c, Place &p) :
     current_place(&p),
     controller(c)
 {
-    
+    current_place->enter(*this);
 }
 
 Actor::~Actor()

@@ -36,10 +36,12 @@ Controller::Controller() :
 
     DirectionSet allowed("NESW");
     Place * place = new OutdoorPlace(*this, "test", "afsfgsdf", 1, 1, allowed);
-
     actors.push_back(new Player(*this, *place));
     actors.push_back(new Wolf(*this, *place));
     actors.push_back(new OldMan(*this, *place));
+
+    //Actor & test = place->get_actor("The kid");
+    //std::cout << test.name() << std::endl;
 }
 
 Controller::~Controller()
@@ -129,6 +131,9 @@ const Place & Controller::get_place(size_t x, size_t y) const
  *****************************************************************************/
 void Controller::command_quit(std::istream & is)
 {
+    if (is.peek() != EOF) {
+        throw std::invalid_argument("invalid number of arguments");
+    }
     is_running = false;
 }
 
@@ -150,6 +155,8 @@ void Controller::command_talk(std::istream & is)
     if (is.peek() != EOF) {
         throw std::invalid_argument("invalid number of arguments");
     }
+
+
 }
 
 void Controller::command_fight(std::istream & is)
@@ -181,12 +188,20 @@ void Controller::command_pick_up(std::istream & is)
 
 void Controller::command_save(std::istream & is)
 {
-
+    std::string save_name;
+    is >> save_name;
+    if (is.peek() != EOF) {
+        throw std::invalid_argument("invalid number of arguments");
+    }
 }
 
 void Controller::command_load(std::istream & is)
 {
-
+    std::string save_name;
+    is >> save_name;
+    if (is.peek() != EOF) {
+        throw std::invalid_argument("invalid number of arguments");
+    }
 }
 
 }

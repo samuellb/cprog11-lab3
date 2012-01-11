@@ -1,8 +1,9 @@
 #include "place.h"
 #include "actor.h"
 #include "controller.h"
-#include <sstream>
 
+#include <stdexcept>
+#include <sstream>
 
 namespace game {
 
@@ -22,12 +23,22 @@ Place::~Place()
 
 void Place::enter(Actor & actor)
 {
-    actors.insert(&actor);
+    actors.insert(std::pair<std::string, Actor*>(actor.name(), &actor));
 }
 
 void Place::leave(Actor & actor)
 {
-    actors.erase(&actor);
+    actors.erase(actor.name());
+}
+
+Actor & Place::get_actor(std::string actor)
+{
+    auto actor_pair = actors.find(actor);
+    if (actor_pair != actors.end()) {
+        return *actor_pair->second;
+    }
+
+    throw std::out_of_range("no actor found");
 }
 
 std::string Place::name() const
@@ -45,9 +56,9 @@ std::string Place::description() const
         ss << "You see:" << std::endl;
     }
     
-    for (auto actor : actors) {
-        if (!actor->is_player()) {
-            ss << "    " << actor->description() << std::endl;
+    for (auto kv : actors) {
+        if (!kv.second->is_player()) {
+            ss << "    " << kv.second->description() << std::endl;
         }
     }
     
@@ -61,7 +72,7 @@ bool Place::has_nonplayer_actors() const
     if (actors.empty()) return false;
     
     // check if there's only a player in this place
-    if (actors.size() == 1 && (*actors.begin())->is_player()) return false;
+    if (actors.size() == 1 && (*actors.begin()).second->is_player()) return false;
     
     return true; // otherwise there must be a non-player actor
 }
