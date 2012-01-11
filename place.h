@@ -32,6 +32,7 @@ class Place {
         Controller & controller;
         const std::string name_, description_;
         std::map<std::string, Actor*> actors;
+        std::map<std::string, Object*> objects;
         
         bool has_nonplayer_actors() const;
 };

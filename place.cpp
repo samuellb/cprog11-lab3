@@ -1,5 +1,6 @@
 #include "place.h"
 #include "actor.h"
+#include "object.h"
 #include "controller.h"
 
 #include <stdexcept>
@@ -12,7 +13,8 @@ Place::Place(Controller & c,
     controller(c),
     name_(n),
     description_(d),
-    actors()
+    actors(),
+    objects()
 {
 }
 
@@ -52,7 +54,7 @@ std::string Place::description() const
     ss << description_ << std::endl;
     
     if (has_nonplayer_actors()) {
-        ss << "You see:" << std::endl;
+        ss << "The kid looks around and sees:" << std::endl;
     }
     
     for (auto kv : actors) {
@@ -60,9 +62,11 @@ std::string Place::description() const
             ss << "    " << kv.second->name() << ": " << kv.second->description() << std::endl;
         }
     }
-    
-    // TODO items?
-    
+
+    for (auto kv : objects) {
+        ss << "    " << kv.second->name() << ": " << kv.second->description() << std::endl;
+    }
+
     return ss.str();
 }
 
