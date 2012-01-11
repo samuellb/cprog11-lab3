@@ -22,7 +22,8 @@ class Loader {
         std::map<std::string, parse_method_type> parse_methods;
         
         void parse_outdoor(std::istream &);
-        //void parse_player(std::istream &);
+        template<typename T> void parse_actor(std::istream & is);
+        Place & parse_place_reference(std::istream & is) const;
 
         Controller &controller;
 };

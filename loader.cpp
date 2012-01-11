@@ -20,6 +20,9 @@ Loader::Loader(Controller & c) :
     controller(c)
 {
     parse_methods[std::string("outdoor")] = &Loader::parse_outdoor;
+    parse_methods[std::string("oldman")] = &Loader::parse_actor<Player>;
+    parse_methods[std::string("player")] = &Loader::parse_actor<OldMan>;
+    parse_methods[std::string("wolf")] = &Loader::parse_actor<Wolf>;
 }
 
 Loader::~Loader()
@@ -71,6 +74,17 @@ void Loader::parse_outdoor(std::istream & is)
     new OutdoorPlace(controller, name, description, x, y, allowed);
 }
 
+Place & Loader::parse_place_reference(std::istream & is) const
+{
+    char name[200];
+    is >> name;
+    return controller.get_place(name);
+}
+
+template<typename T> void Loader::parse_actor(std::istream & is)
+{
+    new T(controller, parse_place_reference(is));
+}
 
 }
 
