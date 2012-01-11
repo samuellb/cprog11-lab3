@@ -15,7 +15,6 @@ class Player : public Human {
 
         virtual void act();
         virtual void talk(Actor &);
-        virtual void fight(Actor &);
 
         virtual std::string name();
         virtual std::string description();

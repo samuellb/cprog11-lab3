@@ -5,7 +5,7 @@
 namespace game {
 
 Wolf::Wolf(Controller & c, Place & p) :
-    Actor(c, p),
+    Actor(c, p, 40),
     controller(c)
 {
     

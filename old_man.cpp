@@ -20,13 +20,9 @@ void OldMan::act()
 {
 }
 
-void OldMan::talk(Actor & actor)
-{
-}
-
 std::string OldMan::name()
 {
-    return "The old man";
+    return "oldman";
 }
 
 std::string OldMan::description()

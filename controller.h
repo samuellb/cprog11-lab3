@@ -36,6 +36,8 @@ class Controller {
         {
             return const_cast<Place&>(const_cast<const Controller*>(this)->get_place(x, y));
         }
+
+        void kill(Actor & actor);
         
     protected:
         bool is_running;

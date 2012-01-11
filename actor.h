@@ -9,7 +9,7 @@ namespace game {
 class Actor {
     
     public:
-        Actor(Controller &, Place &);
+        Actor(Controller &, Place &, int);
         virtual ~Actor();
 
         virtual void act() = 0;
@@ -23,13 +23,18 @@ class Actor {
         virtual std::string type() = 0;
         virtual std::string description() = 0;
         virtual bool is_player();
+
+        inline bool is_alive() { return health > 0; }
+        inline Weapon * get_weapon() { return current_weapon; }
         
         Place & place();
 
         int health;
+        int base_damage;
         
     protected:
         Place * current_place;
+        Weapon * current_weapon;
         Controller &controller;
         
     private:

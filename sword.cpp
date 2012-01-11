@@ -4,8 +4,8 @@
 
 namespace game {
     
-Sword::Sword(Controller &c, unsigned int weapon_damage) :
-    Weapon(c, weapon_damage),
+Sword::Sword(Controller &c) :
+    Weapon(c, 17),
     controller(c)
 {
     
@@ -33,12 +33,12 @@ int Sword::price()
 
 std::string Sword::name() const
 {
-    return "The kids sword";
+    return "sword";
 }
 
 std::string Sword::type() const
 {
-    return "Weapon|Sword";
+    return "weapon|sword";
 }
 
 std::string Sword::description() const

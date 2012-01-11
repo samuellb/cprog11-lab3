@@ -21,7 +21,7 @@ class Place {
         virtual std::set<std::string> & directions() const = 0;
         virtual Place & neighbor(std::string) const = 0;
 
-        Actor & get_actor(std::string);
+        Actor * get_actor(std::string);
         
         std::string name() const;
         std::string description() const;

@@ -14,7 +14,6 @@ class OldMan : public Human {
         virtual ~OldMan();
 
         virtual void act();
-        virtual void talk(Actor &);
 
         virtual std::string name();
         virtual std::string description();

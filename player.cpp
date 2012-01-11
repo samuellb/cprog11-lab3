@@ -26,17 +26,14 @@ void Player::act()
 {
 }
 
-void Player::fight(Actor & actor)
-{
-}
-
 void Player::talk(Actor & actor)
 {
+    std::cout << "the player cannot talk, " << actor.name() << " says something" << std::endl;
 }
 
 std::string Player::name()
 {
-    return "The kid";
+    return "kid";
 }
 
 std::string Player::description()

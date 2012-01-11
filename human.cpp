@@ -6,7 +6,7 @@
 namespace game {
 
 Human::Human(Controller & c, Place & p) :
-    Actor(c, p),
+    Actor(c, p, 25),
     controller(c),
     container(new Backpack(c))
 {

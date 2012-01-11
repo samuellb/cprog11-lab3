@@ -4,7 +4,7 @@
 
 namespace game {
 
-Weapon::Weapon(Controller &c, unsigned int weapon_damage) :
+Weapon::Weapon(Controller &c, int weapon_damage) :
     Object(c),
     damage(weapon_damage),
     controller(c)

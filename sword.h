@@ -10,7 +10,7 @@ namespace game {
 class Sword : public Weapon {
     
     public:
-        Sword(Controller &c, unsigned int);
+        Sword(Controller &);
         virtual ~Sword();
 
         virtual int weight();

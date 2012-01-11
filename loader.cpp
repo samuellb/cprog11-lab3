@@ -34,11 +34,11 @@ void Loader::load(std::istream & is)
 {
     std::ios::iostate prev_exc = is.exceptions(); // TODO should use RAII
     is.exceptions(std::ios::eofbit | std::ios::failbit | std::ios::badbit);
-    
+   
+    std::cout << "Initializing game..." << std::endl;
     std::string command;
     while (true) {
         is >> command;
-        std::cout << "read >" << command << "<" << std::endl;
         if (command == "end") break;
         if (command.empty()) continue;
         

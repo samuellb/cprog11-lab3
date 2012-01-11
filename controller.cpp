@@ -20,6 +20,7 @@ namespace game {
 
 Controller::Controller() :
     is_running(true),
+    player(0),
     map(10, 10),
     actors(),
     commands()
@@ -33,15 +34,6 @@ Controller::Controller() :
     commands["pick_up"] = &Controller::command_pick_up;
     commands["save"] = &Controller::command_save;
     commands["load"] = &Controller::command_load;
-
-/*    DirectionSet allowed("NESW");
-    Place * place = new OutdoorPlace(*this, "test", "afsfgsdf", 1, 1, allowed);
-    actors.push_back(new Player(*this, *place));
-    actors.push_back(new Wolf(*this, *place));
-    actors.push_back(new OldMan(*this, *place));*/
-
-    //Actor & test = place->get_actor("The kid");
-    //std::cout << test.name() << std::endl;
 }
 
 Controller::~Controller()
@@ -51,17 +43,29 @@ Controller::~Controller()
     }
 }
 
+/**
+ * Controller::run_game
+ *
+ * Main game loop
+ */
 void Controller::run_game()
 {
     load("maps/map.txt");
 
-    while(is_running) {
+    while (is_running) {
         run_output();
         run_input();
-        run_step();
+        //if (is_running) {
+            run_step();
+        //}
     }
 }
 
+/**
+ * Controller::load
+ *
+ * Loads the game, every actor, object and place.
+ */
 void Controller::load(std::string filename)
 {
     std::ifstream map(filename);
@@ -69,6 +73,10 @@ void Controller::load(std::string filename)
     loader.load(map);
 }
 
+/**
+ * Controller::run_output
+ *
+ */
 void Controller::run_output() const
 {
     std::cout << player->place().description();
@@ -80,8 +88,15 @@ void Controller::run_output() const
     std::cout << std::endl;
 }
 
+/**
+ * Controller::run_input
+ *
+ * Handle every user input.
+ */
 void Controller::run_input()
 {
+    std::cout << "> ";
+
     std::string line;
     getline(std::cin, line);
 
@@ -105,22 +120,6 @@ void Controller::run_step()
     for (auto actor : actors) {
         actor->act();
     }
-
-    //Player * player = new Player(*this);
-    //Backpack * bp = new Backpack(*this);
-    //Key * key = new Key(*this);
-    //bp->add(*key);
-
-    //player->pick_up(*key);
-    //player->drop(*key);
-
-    //delete player;
-    //delete bp;
-    //delete key;
-
-    //Sword * sword = new Sword(*this, 1000);
-    //std::cout << sword->description() << std::endl;
-    //delete sword;
 }
 
 void Controller::add_place(size_t x, size_t y, Place & place)
@@ -143,6 +142,25 @@ const Place & Controller::get_place(std::string name) const
 const Place & Controller::get_place(size_t x, size_t y) const
 {
     return map.get(x, y);
+}
+
+void Controller::kill(Actor & actor)
+{
+    if (actor.name() == "kid") {
+        is_running = false;
+        std::cout << "Game over" << std::endl;
+    }
+
+    for (auto it = actors.begin(); it != actors.end(); ++it) {
+        if ((*it) == &actor) {
+            actors.erase(it);
+        }
+    }
+
+    Place & place = actor.place();
+    place.leave(actor);
+
+    delete &actor;
 }
 
 /******************************************************************************
@@ -175,7 +193,10 @@ void Controller::command_talk(std::istream & is)
         throw std::invalid_argument("invalid number of arguments");
     }
 
-
+    Actor * actor = player->place().get_actor(actor_name);
+    if (actor != 0) {
+        player->talk(*actor);
+    }
 }
 
 void Controller::command_fight(std::istream & is)
@@ -184,6 +205,13 @@ void Controller::command_fight(std::istream & is)
     is >> actor_name;
     if (is.peek() != EOF) {
         throw std::invalid_argument("invalid number of arguments");
+    }
+
+    Actor * actor = player->place().get_actor(actor_name);
+    if (actor != 0) {
+        player->fight(*actor);
+    } else {
+        std::cout << "The kid looks stupied trying to fight a non existent entity." << std::endl;
     }
 }
 
@@ -194,6 +222,8 @@ void Controller::command_drop(std::istream & is)
     if (is.peek() != EOF) {
         throw std::invalid_argument("invalid number of arguments");
     }
+
+    //player->drop(object_name);
 }
 
 void Controller::command_pick_up(std::istream & is)
@@ -203,6 +233,8 @@ void Controller::command_pick_up(std::istream & is)
     if (is.peek() != EOF) {
         throw std::invalid_argument("invalid number of arguments");
     }
+
+    //player->pick_up(object_name);
 }
 
 void Controller::command_save(std::istream & is)

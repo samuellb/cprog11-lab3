@@ -30,14 +30,14 @@ void Place::leave(Actor & actor)
     actors.erase(actor.name());
 }
 
-Actor & Place::get_actor(std::string actor)
+Actor * Place::get_actor(std::string actor)
 {
     auto actor_pair = actors.find(actor);
     if (actor_pair != actors.end()) {
-        return *actor_pair->second;
+        return actor_pair->second;
     }
 
-    throw std::out_of_range("no actor found");
+    return 0;
 }
 
 std::string Place::name() const
@@ -57,7 +57,7 @@ std::string Place::description() const
     
     for (auto kv : actors) {
         if (!kv.second->is_player()) {
-            ss << "    " << kv.second->description() << std::endl;
+            ss << "    " << kv.second->name() << ": " << kv.second->description() << std::endl;
         }
     }
     
