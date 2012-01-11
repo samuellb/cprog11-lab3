@@ -12,7 +12,7 @@ class OutdoorPlace : public Place {
     
     public:
         
-        enum Direction { N, NE, E, SE, S, SW, W, NW };
+        enum Direction { N, E, S, W };
         
         OutdoorPlace(Controller & controller_,
                      std::string name_, std::string description_text_,

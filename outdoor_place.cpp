@@ -8,7 +8,7 @@
 namespace game {
 
 static const char *direction_names[] = {
-    "N", "NE", "E", "SE", "S", "SW", "W", "NW"
+    "N", "E", "S", "W"
 };
 
 OutdoorPlace::OutdoorPlace(Controller & controller,
@@ -30,7 +30,7 @@ std::set<std::string> & OutdoorPlace::directions() const
 {
     std::set<std::string> & set = *new std::set<std::string>();
     
-    for (size_t dir = 0; dir < 8; dir++) {
+    for (size_t dir = 0; dir < 4; dir++) {
         if ((1 << dir) & allowed) {
             set.insert(direction_names[dir]);
         }
@@ -47,8 +47,7 @@ Place & OutdoorPlace::neighbor(std::string direction) const
 Place & OutdoorPlace::neighbor(OutdoorPlace::Direction dir) const
 {
     static const struct { int x, y; } offset[] = {
-        /*N*/{  0, -1 }, /*NE*/{  1, -1 }, /*E*/{  1,  0 }, /*SE*/{  1,  1 },
-        /*S*/{  0,  1 }, /*SW*/{ -1,  1 }, /*W*/{ -1,  0 }, /*NW*/{ -1, -1 }
+        /*N*/{  0, -1 }, /*E*/{  1,  0 }, /*S*/{  0,  1 }, /*W*/{ -1,  0 }
     };
     
     return controller.get_place(x + offset[dir].x, y + offset[dir].y);
@@ -56,7 +55,7 @@ Place & OutdoorPlace::neighbor(OutdoorPlace::Direction dir) const
 
 OutdoorPlace::Direction OutdoorPlace::parse_direction(std::string direction) const
 {
-    for (size_t dir = 0; dir < 8; dir++) {
+    for (size_t dir = 0; dir < 4; dir++) {
         if (direction == direction_names[dir]) {
             return static_cast<Direction>(dir);
         }
