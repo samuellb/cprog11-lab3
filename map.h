@@ -17,13 +17,13 @@ class Map {
         const Place & get(size_t x, size_t y) const;
         inline Place & get(size_t x, size_t y)
         {
-            return const_cast<Place&>(get(x, y));
+            return const_cast<Place&>(const_cast<const Map*>(this)->get(x, y));
         }
         
         const Place & get(std::string name) const;
         inline Place & get(std::string name)
         {
-            return const_cast<Place&>(get(name));
+            return const_cast<Place&>(const_cast<const Map*>(this)->get(name));
         }
         
         void set(size_t x, size_t y, Place & place);
