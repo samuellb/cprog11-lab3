@@ -1,0 +1,14 @@
+go s
+chop
+go n
+go w
+talk oldman
+go e
+go s
+go s
+go s
+go s
+go s
+go s
+portal
+

@@ -11,6 +11,7 @@
 #include "outdoor_place.h"
 #include "woods.h"
 #include "portal.h"
+#include "goal.h"
 #include "loader.h"
 #include "container.h"
 
@@ -26,6 +27,7 @@ Loader::Loader(Controller & c) :
     parse_methods[std::string("outdoor")] = &Loader::parse_xy_place<OutdoorPlace>;
     parse_methods[std::string("woods")] = &Loader::parse_xy_place<Woods>;
     parse_methods[std::string("portal")] = &Loader::parse_xy_place<Portal>;
+    parse_methods[std::string("goal")] = &Loader::parse_xy_place<Goal>;
     parse_methods[std::string("oldman")] = &Loader::parse_actor<OldMan>;
     parse_methods[std::string("player")] = &Loader::parse_actor<Player>;
     parse_methods[std::string("wolf")] = &Loader::parse_actor<Wolf>;

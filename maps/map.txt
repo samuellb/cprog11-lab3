@@ -17,7 +17,7 @@ woods   4 7 new  "woods47"           "The kid stumbles in the dark wood."
 woods   5 7 nw   "woods58"           "The kid stumbles in the dark wood."
 woods   3 8 ns   "woods38"           "The kid finally sees an opening to the south."
 portal  3 9 n    "portal"            "You see a PORTAL."
-outdoor 9 9 e    "portal target"     "You wake up. It was just a bad dream! You win :)"
+goal    9 9 e    "portal target"     "You wake up. It was just a bad dream! You win :)"
 
 oldman  "old mans place"
 wolf    "woods38"

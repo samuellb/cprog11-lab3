@@ -128,6 +128,17 @@ void Controller::clear()
 }
 
 /**
+ * Controller::exit
+ *
+ * Free's all memory (so leaks can be detected with Valgrind) and exits the game.
+ */
+void Controller::exit()
+{
+    clear();
+    std::exit(0);
+}
+
+/**
  * Controller::run_output
  *
  */

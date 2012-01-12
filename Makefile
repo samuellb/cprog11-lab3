@@ -1,5 +1,5 @@
 
-OBJECTS = actor.o controller.o direction.o firewood.o loader.o main.o map.o outdoor_place.o place.o portal.o crazy_wolf.o wolf.o player.o human.o old_man.o object.o container.o backpack.o key.o weapon.o woods.o sword.o
+OBJECTS = actor.o controller.o direction.o firewood.o loader.o main.o map.o outdoor_place.o place.o portal.o crazy_wolf.o wolf.o player.o human.o old_man.o object.o container.o backpack.o key.o weapon.o woods.o sword.o goal.o
 
 CFLAGS += -Wall -Wextra -Weffc++ -O2 -std=c++0x -g
 

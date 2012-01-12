@@ -21,6 +21,7 @@ class Controller {
         void load(std::string);
         void save(std::string);
         void clear();
+        void exit();
 
         inline void set_player(Player & p) { player = &p; }
 
