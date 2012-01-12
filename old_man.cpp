@@ -42,6 +42,7 @@ void OldMan::talked_to(Actor & actor)
             if (actor.is_player()) {
                 std::cout << "Thank you! Now I can make a fire! Here's a key." << std::endl;
             }
+            controller.add_object(*key);
         } else {
             delete key;
         }

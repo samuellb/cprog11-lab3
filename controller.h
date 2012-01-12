@@ -30,6 +30,7 @@ class Controller {
         void add_object(Object &, Place &);
         void add_object(Object &, Container &);
         void add_object(Object &, Actor &);
+        void add_object(Object & object);
 
         Object * get_object(std::string);
         Actor * get_actor(std::string);

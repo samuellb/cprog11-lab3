@@ -247,7 +247,7 @@ Actor * Controller::get_actor(std::string actor_name)
  */
 void Controller::add_object(Object & object, Place & place)
 {
-    objects.insert(std::pair<std::string, Object*>(object.name(), &object));
+    add_object(object);
     place.add_object(object);
 }
 
@@ -259,7 +259,7 @@ void Controller::add_object(Object & object, Place & place)
 void Controller::add_object(Object & object, Container & container)
 {
     if (container.add(object)) {
-        objects.insert(std::pair<std::string, Object*>(object.name(), &object));
+        add_object(object);
     }
 }
 
@@ -270,11 +270,21 @@ void Controller::add_object(Object & object, Container & container)
  */
 void Controller::add_object(Object & object, Actor & actor)
 {
-    objects.insert(std::pair<std::string, Object*>(object.name(), &object));
+    add_object(object);
     Container * container = dynamic_cast<Container*>(&object);
     if (container != 0) {
         actor.set_container(container);
     }
+}
+
+/**
+ * Controller::add_object
+ *
+ * Add object that has already been added somewhere in the game.
+ */
+void Controller::add_object(Object & object)
+{
+    objects.insert(std::pair<std::string, Object*>(object.name(), &object));
 }
 
 /**
