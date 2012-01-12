@@ -13,7 +13,8 @@ class Human : public Actor {
     public:
         Human(Controller &, Place &);
         virtual ~Human();
-    
+   
+        virtual bool equip(Object *);
         virtual bool drop(Object &);
         virtual bool pick_up(Object &);
         virtual bool has_object(std::string) const;
@@ -22,10 +23,6 @@ class Human : public Actor {
         virtual std::string type() const = 0;
         virtual std::string description() const = 0;
 
-    protected:
-        Controller &controller;
-        Container * container;
-        
     private:
         // disable copy and assignment
         Human(const Human &);

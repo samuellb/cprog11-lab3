@@ -20,8 +20,6 @@ class Player : public Human {
         virtual std::string name() const;
         virtual std::string description() const;
         virtual bool is_player() const;
-    protected:
-        Controller &controller;
 };
 
 }

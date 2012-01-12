@@ -9,7 +9,7 @@ namespace game {
 class Object {
     
     public:
-        Object(Controller &c);
+        Object(Controller &);
         virtual ~Object() = 0;
 
         virtual int weight() const = 0;
@@ -19,6 +19,8 @@ class Object {
         virtual std::string name() const = 0;
         virtual std::string type() const = 0;
         virtual std::string description() const = 0;
+
+        virtual void save(std::ostream &, std::string &, std::string &) const;
 
     protected:
         Controller &controller;

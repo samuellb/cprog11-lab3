@@ -18,16 +18,18 @@ class Place {
         
         virtual void enter(Actor &);
         virtual void leave(Actor &);
-        
+
         virtual std::set<std::string> & directions() const = 0;
         virtual Place & neighbor(std::string) const = 0;
 
         Actor * get_actor(std::string);
+
+        virtual void add_object(Object &);
+        virtual void remove_object(Object &);
+        Object * get_object(std::string);
         
         std::string name() const;
         std::string description() const;
-        
-        // TODO pick_up / drop item
         
         std::set<std::string> actions() const;
         bool has_action(std::string) const;

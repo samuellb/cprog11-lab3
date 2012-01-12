@@ -43,6 +43,26 @@ Actor * Place::get_actor(std::string actor)
     return 0;
 }
 
+void Place::add_object(Object & object)
+{
+    objects.insert(std::make_pair(object.name(), &object));
+}
+
+void Place::remove_object(Object & object)
+{
+    objects.erase(object.name());
+}
+
+Object * Place::get_object(std::string object)
+{
+    auto object_pair = objects.find(object);
+    if (object_pair != objects.end()) {
+        return object_pair->second;
+    }
+
+    return 0;
+}
+
 std::string Place::name() const
 {
     return name_;
@@ -128,9 +148,10 @@ void Place::save_actors(std::ostream & os) const
 
 void Place::save_objects(std::ostream & os) const
 {
+    std::string reference_type = "place";
+    std::string reference = name();
     for (auto kv : objects) {
-        // TODO
-        //kv.second->save(os);
+        kv.second->save(os, reference_type, reference);
     }
 }
 

@@ -1,10 +1,14 @@
-woods 3 4 n "south woods" "This is the woods in the south"
-player "south woods"
+outdoor 2 3 e "old mans place" "You're standing in the OLDMANs place. He's freezing. Maybe you should TALK to him?"
+oldman "old mans place"
 
-outdoor 3 3 sw "start room" "This is the starting place"
-oldman "start room"
+portal 4 3 w "portal" "You see a PORTAL."
 
-outdoor 2 3 e "west room" "This is the west place"
-wolf "west room"
+outdoor 9 9 e "portal target" "You wake up. It was just a bad dream! You win :)"
+
+woods 3 4 n "south woods" "This is the woods in the south. There's an axe. You may CHOP trees."
+wolf "south woods"
+
+outdoor 3 3 esw "start" "You're standing on a large meadow. You can GO East to a strange shape of stone, GO South to a large wood or GO West to the old mans place."
+player "start"
 
 end

@@ -5,8 +5,7 @@
 namespace game {
 
 Player::Player(Controller & c, Place & p) :
-    Human(c, p),
-    controller(c)
+    Human(c, p)
 {
     controller.set_player(*this);
 }

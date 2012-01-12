@@ -11,6 +11,7 @@
 #include "woods.h"
 #include "portal.h"
 #include "loader.h"
+#include "container.h"
 
 #include <iostream>
 #include <stdexcept>
@@ -25,8 +26,11 @@ Loader::Loader(Controller & c) :
     parse_methods[std::string("woods")] = &Loader::parse_xy_place<Woods>;
     parse_methods[std::string("portal")] = &Loader::parse_xy_place<Portal>;
     parse_methods[std::string("oldman")] = &Loader::parse_actor<OldMan>;
-    parse_methods[std::string("player")] = &Loader::parse_actor<Player>;
+    parse_methods[std::string("kid")] = &Loader::parse_actor<Player>;
     parse_methods[std::string("wolf")] = &Loader::parse_actor<Wolf>;
+    parse_methods[std::string("sword")] = &Loader::parse_object<Sword>;
+    parse_methods[std::string("key")] = &Loader::parse_object<Key>;
+    parse_methods[std::string("backpack")] = &Loader::parse_object<Backpack>;
 }
 
 Loader::~Loader()
@@ -92,9 +96,37 @@ Place & Loader::parse_place_reference(std::istream & is) const
     return controller.get_place(read_string(is));
 }
 
+Actor * Loader::parse_actor_reference(std::istream & is) const
+{
+    return controller.get_actor(read_string(is));
+}
+
+Object * Loader::parse_object_reference(std::istream & is) const
+{
+    return controller.get_object(read_string(is));
+}
+
 template<typename T> void Loader::parse_actor(std::istream & is)
 {
     controller.add_actor(*new T(controller, parse_place_reference(is)));
+}
+
+template<typename T> void Loader::parse_object(std::istream & is)
+{
+    std::string reference_type;
+    is >> reference_type;
+    if (reference_type == "place") {
+        controller.add_object(*new T(controller), parse_place_reference(is));
+    } else if (reference_type == "actor") {
+        controller.add_object(*new T(controller), *parse_actor_reference(is));
+    } else if (reference_type == "container") {
+        std::cout << "here??" << std::endl;
+        Container * container = dynamic_cast<Container*>(parse_object_reference(is));
+        if (container != 0) {
+            std::cout << "valid" << std::endl;
+            controller.add_object(*new T(controller), *container);
+        }
+    }
 }
 
 }

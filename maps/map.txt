@@ -6,7 +6,11 @@ outdoor 9 9 e   "portal target"     "You wake up. It was just a bad dream! You w
 
 oldman  "old mans place"
 wolf    "south woods"
-player  "start"
+kid "start"
+
+sword   place   "start"
+backpack    actor   "kid"
+key container "backpack"
 
 end
 

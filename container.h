@@ -20,9 +20,11 @@ class Container : public Object {
         virtual bool remove(Object &);
         virtual bool contains(std::string) const;
 
+        inline bool is_empty() { return objects.size() == 0; }
+        inline std::set<Object*> get_objects() { return objects; }
+
     protected:
         std::set<Object *> objects;
-        Controller &controller;
 
         int used_weight;
         int used_volume;

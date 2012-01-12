@@ -1,5 +1,7 @@
 #include "sword.h"
 #include "controller.h"
+
+#include <sstream>
 #include <string>
 
 namespace game {
@@ -38,12 +40,14 @@ std::string Sword::name() const
 
 std::string Sword::type() const
 {
-    return "weapon|sword";
+    return "sword";
 }
 
 std::string Sword::description() const
 {
-    return "The kids sword was made by an unknown swordsmith in the southern part of Caelondia";
+    std::stringstream out;
+    out << get_damage();
+    return "A plain sword (" + out.str() + " damage per hit)";
 }
 
 }

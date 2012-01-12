@@ -2,8 +2,11 @@
 #define ACTOR_H
 
 #include "types.h"
+#include "container.h"
+
 #include <ostream>
 #include <string>
+#include <iostream>
 
 namespace game {
 
@@ -18,6 +21,7 @@ class Actor {
         void teleport(std::string);
         virtual void talk(Actor &);
         virtual void fight(Actor &);
+        virtual bool equip(Object *);
         virtual bool drop(Object &);
         virtual bool pick_up(Object &);
         virtual bool has_object(std::string) const;
@@ -30,17 +34,22 @@ class Actor {
         inline bool is_alive() { return health > 0; }
         inline Weapon * get_weapon() { return current_weapon; }
         inline void set_weapon(Weapon * weapon) { current_weapon = weapon; }
+        inline void clear_weapon() { current_weapon = 0; }
+    
+        inline Container * get_container() { return current_container; }
+        inline void set_container(Container * container) { current_container = container; }
         
-        Place & place();
+        inline Place * get_place() { return current_place; }
 
         int health;
         int base_damage;
         
-        virtual void save(std::ostream & is) const;
+        virtual void save(std::ostream &) const;
         
     protected:
         Place * current_place;
         Weapon * current_weapon;
+        Container * current_container;
         Controller &controller;
         
     private:

@@ -8,7 +8,6 @@ namespace game {
 Container::Container(Controller &c) :
     Object(c),
     objects(),
-    controller(c),
     used_weight(0),
     used_volume(0)
 {
@@ -25,7 +24,7 @@ Container::~Container()
 bool Container::add(Object & object)
 {
     if (objects.count(&object) > 0) return false;
-    
+   
     if (used_volume + object.volume() <= hold_volume() && used_weight + object.weight() <= hold_weight()) {
         objects.insert(&object);
         used_volume += object.volume();

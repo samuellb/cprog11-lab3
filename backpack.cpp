@@ -44,12 +44,12 @@ int Backpack::hold_volume() const
 
 std::string Backpack::name() const
 {
-    return "Backpack";
+    return "backpack";
 }
 
 std::string Backpack::type() const
 {
-    return "Container";
+    return "backpack";
 }
 
 std::string Backpack::description() const

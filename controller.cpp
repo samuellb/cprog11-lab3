@@ -9,6 +9,7 @@
 #include "old_man.h"
 #include "outdoor_place.h"
 #include "loader.h"
+#include "container.h"
 
 #include <stdexcept>
 #include <fstream>
@@ -23,13 +24,15 @@ Controller::Controller() :
     player(0),
     map(10, 10),
     actors(),
-    commands()
+    commands(),
+    objects()
 {
     commands["quit"] = &Controller::command_quit;
     commands["exit"] = &Controller::command_quit;
     commands["go"] = &Controller::command_go;
     commands["talk"] = &Controller::command_talk;
     commands["fight"] = &Controller::command_fight;
+    commands["equip"] = &Controller::command_equip;
     commands["drop"] = &Controller::command_drop;
     commands["pick_up"] = &Controller::command_pick_up;
     commands["save"] = &Controller::command_save;
@@ -68,7 +71,11 @@ void Controller::run_game()
  */
 void Controller::introduction() const
 {
-    std::cout << "The kid wakes up from a nightmare, but where is he? He must find his home without getting killed..." << std::endl;
+    std::cout << std::endl;
+    std::cout << "The kid wakes up from a nightmare, but where is he? Why is he not in his bed?" << std::endl;
+    std::cout << "The kid has many questions but standing here will not get him any answers." << std::endl;
+    std::cout << "The kid must find his way back home without getting killed." << std::endl;
+    std::cout << std::endl;
 }
 
 /**
@@ -106,12 +113,18 @@ void Controller::clear()
 {
     map.clear();
     
-    for (auto actor : actors) {
-        delete actor;
+    for (auto kv : actors) {
+        delete kv.second;
     }
     actors.clear();
     
-    // TODO delete items
+    //for (auto kv : objects) {
+        //if (kv.second != 0) {
+            //std::cout << kv.second->name() << std::endl;
+            //delete kv.second;
+        //}
+    //}
+    objects.clear();
 }
 
 /**
@@ -120,13 +133,23 @@ void Controller::clear()
  */
 void Controller::run_output() const
 {
-    std::cout << player->place().description();
-    
+    std::cout << player->get_place()->description();
+
+    Container * container = player->get_container();
+    if (container != 0 && !container->is_empty()) {
+        std::cout << "Inventory: ";
+        for (auto object : container->get_objects()) {
+            std::cout << object->name() << "  ";
+        }
+        std::cout << std::endl;
+    }
+
     std::cout << "You can go: ";
-    for (std::string dirname : player->place().directions()) {
+    for (std::string dirname : player->get_place()->directions()) {
         std::cout << dirname << "  ";
     }
     std::cout << std::endl;
+
 }
 
 /**
@@ -147,8 +170,8 @@ void Controller::run_input()
 
     if (commands.find(command) == commands.end()) {
         // Check if it's an action in the current place
-        if (player->place().has_action(command)) {
-            player->place().perform_action(command, *player);
+        if (player->get_place()->has_action(command)) {
+            player->get_place()->perform_action(command, *player);
         } else {
             std::cerr << "Invalid command: " << command << std::endl;
         }
@@ -164,8 +187,8 @@ void Controller::run_input()
 
 void Controller::run_step()
 {
-    for (auto actor : actors) {
-        actor->act();
+    for (auto kv : actors) {
+        kv.second->act();
     }
 }
 
@@ -176,9 +199,76 @@ void Controller::add_place(size_t x, size_t y, Place & place)
 
 void Controller::add_actor(Actor & actor)
 {
-    Place & place = actor.place();
-    actors.push_back(&actor);
-    place.enter(actor);
+    actors.insert(std::pair<std::string, Actor*>(actor.name(), &actor));
+    Place * place = actor.get_place();
+    place->enter(actor);
+}
+
+/**
+ * Controller::get_actor
+ *
+ * Get actor from string name
+ */
+Actor * Controller::get_actor(std::string actor_name)
+{
+    auto actor_pair = actors.find(actor_name);
+    if (actor_pair != actors.end()) {
+        return actor_pair->second;
+    }
+
+    return 0;
+}
+
+/**
+ * Controller::add_object
+ *
+ * Add object to a place
+ */
+void Controller::add_object(Object & object, Place & place)
+{
+    objects.insert(std::pair<std::string, Object*>(object.name(), &object));
+    place.add_object(object);
+}
+
+/**
+ * Controller::add_object
+ *
+ * Add object to a container
+ */
+void Controller::add_object(Object & object, Container & container)
+{
+    if (container.add(object)) {
+        objects.insert(std::pair<std::string, Object*>(object.name(), &object));
+    }
+}
+
+/**
+ * Controller::add_object
+ *
+ * Add object to an actor
+ */
+void Controller::add_object(Object & object, Actor & actor)
+{
+    objects.insert(std::pair<std::string, Object*>(object.name(), &object));
+    Container * container = dynamic_cast<Container*>(&object);
+    if (container != 0) {
+        actor.set_container(container);
+    }
+}
+
+/**
+ * Controller::get_object
+ *
+ * Get object from string name
+ */
+Object * Controller::get_object(std::string object)
+{
+    auto object_pair = objects.find(object);
+    if (object_pair != objects.end()) {
+        return object_pair->second;
+    }
+
+    return 0;
 }
 
 const Place & Controller::get_place(std::string name) const
@@ -193,19 +283,15 @@ const Place & Controller::get_place(size_t x, size_t y) const
 
 void Controller::kill(Actor & actor)
 {
-    if (actor.name() == "kid") {
+    if (dynamic_cast<Player*>(&actor) != 0) {
         is_running = false;
         std::cout << "Game over" << std::endl;
     }
 
-    for (auto it = actors.begin(); it != actors.end(); ++it) {
-        if ((*it) == &actor) {
-            actors.erase(it);
-        }
-    }
+    Place * place = actor.get_place();
+    place->leave(actor);
 
-    Place & place = actor.place();
-    place.leave(actor);
+    actors.erase(actor.name());
 
     delete &actor;
 }
@@ -243,9 +329,12 @@ void Controller::command_talk(std::istream & is)
     is >> actor_name;
     check_args_end(is);
 
-    Actor * actor = player->place().get_actor(actor_name);
-    if (actor != 0) {
-        player->talk(*actor);
+    Place * place = player->get_place();
+    if (place != 0) {
+        Actor * actor = place->get_actor(actor_name);
+        if (actor != 0) {
+            player->talk(*actor);
+        }
     }
 }
 
@@ -255,11 +344,26 @@ void Controller::command_fight(std::istream & is)
     is >> actor_name;
     check_args_end(is);
 
-    Actor * actor = player->place().get_actor(actor_name);
-    if (actor != 0) {
-        player->fight(*actor);
-    } else {
-        std::cout << "The kid looks stupied trying to fight a non existent entity." << std::endl;
+    Place * place = player->get_place();
+    if (place != 0) {
+        Actor * actor = place->get_actor(actor_name);
+        if (actor != 0) {
+            player->fight(*actor);
+        } else {
+            std::cout << "The kid looks stupid trying to fight a non existent entity." << std::endl;
+        }
+    }
+}
+
+void Controller::command_equip(std::istream & is)
+{
+    std::string object_name;
+    is >> object_name;
+    check_args_end(is);
+
+    Object * object = get_object(object_name);
+    if (object != 0) {
+        player->equip(object);
     }
 }
 
@@ -269,7 +373,14 @@ void Controller::command_drop(std::istream & is)
     is >> object_name;
     check_args_end(is);
 
-    //player->drop(object_name);
+    Object * object = get_object(object_name);
+    if (object != 0) {
+        if (player->drop(*object)) {
+            player->get_place()->add_object(*object);
+        }
+    } else {
+        std::cout << "The kid tries to drop a non existent entity." << std::endl;
+    }
 }
 
 void Controller::command_pick_up(std::istream & is)
@@ -278,7 +389,14 @@ void Controller::command_pick_up(std::istream & is)
     is >> object_name;
     check_args_end(is);
 
-    //player->pick_up(object_name);
+    Object * object = get_object(object_name);
+    if (object != 0) {
+        if (player->pick_up(*object)) {
+            player->get_place()->remove_object(*object);
+        }
+    } else {
+        std::cout << "The kid tries to pick up a non existent entity." << std::endl;
+    }
 }
 
 void Controller::command_save(std::istream & is)

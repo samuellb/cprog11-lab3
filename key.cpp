@@ -32,12 +32,12 @@ int Key::price() const
 
 std::string Key::name() const
 {
-    return "Key";
+    return "key";
 }
 
 std::string Key::type() const
 {
-    return "Key";
+    return "key";
 }
 
 std::string Key::description() const

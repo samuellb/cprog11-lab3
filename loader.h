@@ -24,7 +24,10 @@ class Loader {
         std::string read_string(std::istream & is) const;
         template<typename T> void parse_xy_place(std::istream & is);
         template<typename T> void parse_actor(std::istream & is);
+        template<typename T> void parse_object(std::istream & is);
         Place & parse_place_reference(std::istream & is) const;
+        Actor * parse_actor_reference(std::istream & is) const;
+        Object * parse_object_reference(std::istream & is) const;
 
         Controller &controller;
 };

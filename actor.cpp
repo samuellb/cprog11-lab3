@@ -10,6 +10,7 @@ Actor::Actor(Controller &c, Place &p, int damage) :
     base_damage(damage),
     current_place(&p),
     current_weapon(0),
+    current_container(0),
     controller(c)
 {
 }
@@ -86,6 +87,11 @@ void Actor::fight(Actor & actor)
     }
 }
 
+bool Actor::equip(Object *)
+{
+    return false;
+}
+
 bool Actor::drop(Object &)
 {
     return false;
@@ -104,11 +110,6 @@ bool Actor::has_object(std::string) const
 bool Actor::is_player() const
 {
     return false;
-}
-
-Place & Actor::place()
-{
-    return *current_place;
 }
 
 void Actor::save(std::ostream & os) const

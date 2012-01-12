@@ -25,7 +25,13 @@ class Controller {
         inline void set_player(Player & p) { player = &p; }
 
         void add_place(size_t x, size_t y, Place &);
-        void add_actor(Actor & actor);
+        void add_actor(Actor &);
+        void add_object(Object &, Place &);
+        void add_object(Object &, Container &);
+        void add_object(Object &, Actor &);
+
+        Object * get_object(std::string);
+        Actor * get_actor(std::string);
         
         const Place & get_place(std::string) const;
         inline Place & get_place(std::string name)
@@ -55,6 +61,7 @@ class Controller {
         void command_go(std::istream &);
         void command_talk(std::istream &);
         void command_fight(std::istream &);
+        void command_equip(std::istream &);
         void command_drop(std::istream &);
         void command_pick_up(std::istream &);
         void command_save(std::istream &);
@@ -63,8 +70,9 @@ class Controller {
     private:
         Player * player;
         Map map;
-        std::vector<Actor*> actors;
+        std::map<std::string, Actor*> actors;
         std::map<std::string, controller_command> commands;
+        std::map<std::string, Object*> objects;
 
         // disable copy and assignment
         Controller(const Controller &);
