@@ -25,7 +25,8 @@ Controller::Controller() :
     map(10, 10),
     actors(),
     commands(),
-    objects()
+    objects(),
+    next_identifier(1)
 {
     commands["quit"] = &Controller::command_quit;
     commands["exit"] = &Controller::command_quit;
@@ -101,6 +102,7 @@ void Controller::save(std::string filename)
 {
     std::ofstream file(filename);
     map.save(file);
+    file << "next_identifier " << next_identifier << std::endl;
     file << "end" << std::endl;
 }
 
@@ -125,6 +127,8 @@ void Controller::clear()
         //}
     //}
     objects.clear();
+    
+    next_identifier = 1;
 }
 
 /**
@@ -311,6 +315,19 @@ void Controller::kill(Actor & actor)
     actors.erase(actor.name());
 
     delete &actor;
+}
+
+/**
+ * Controller::make_identifier
+ *
+ * Constructs a unique identifier, such as "wolf3".
+ */
+std::string Controller::make_identifier(std::string prefix)
+{
+    std::ostringstream oss;
+    oss << prefix << next_identifier++;
+    
+    return oss.str();
 }
 
 void Controller::check_args_end(std::istream & is) const

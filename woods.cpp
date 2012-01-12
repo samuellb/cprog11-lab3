@@ -49,7 +49,7 @@ void Woods::chop(Actor & actor)
         }
         
         // Give some firewood to the actor
-        Firewood *wood = new Firewood(controller, Object::make_name("firewood"));
+        Firewood *wood = new Firewood(controller, controller.make_identifier("firewood"));
         if (!human->pick_up(*wood)) {
             delete wood;
         }

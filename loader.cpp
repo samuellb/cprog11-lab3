@@ -36,6 +36,7 @@ Loader::Loader(Controller & c) :
     parse_methods[std::string("key")] = &Loader::parse_object<Key>;
     parse_methods[std::string("backpack")] = &Loader::parse_object<Backpack>;
     parse_methods[std::string("firewood")] = &Loader::parse_object<Backpack>;
+    parse_methods[std::string("next_identifier")] = &Loader::parse_nextid;
 }
 
 Loader::~Loader()
@@ -133,6 +134,14 @@ template<typename T> void Loader::parse_object(std::istream & is)
             controller.add_object(*new T(controller, name), *container);
         }
     }
+}
+
+void Loader::parse_nextid(std::istream & is)
+{
+    int nextid;
+    is >> nextid;
+    
+    controller.next_identifier = nextid;
 }
 
 }

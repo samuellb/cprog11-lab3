@@ -47,6 +47,7 @@ class Controller {
         }
 
         void kill(Actor & actor);
+        std::string make_identifier(std::string);
         
     protected:
         bool is_running;
@@ -74,10 +75,13 @@ class Controller {
         std::map<std::string, Actor*> actors;
         std::map<std::string, controller_command> commands;
         std::map<std::string, Object*> objects;
+        int next_identifier;
 
         // disable copy and assignment
         Controller(const Controller &);
         Controller & operator=(const Controller &);
+        
+        friend class Loader; // needs to set next_identifier
 };
 
 }

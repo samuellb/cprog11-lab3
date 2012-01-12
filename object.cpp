@@ -26,14 +26,4 @@ void Object::save(std::ostream & os, std::string & reference_type, std::string &
     os << type() << " \"" << name() << "\" " << reference_type << " \"" << reference << "\"" << std::endl;
 }
 
-std::string Object::make_name(std::string prefix)
-{
-    static int object_id = 1;
-    
-    std::ostringstream oss;
-    oss << prefix << object_id++;
-    
-    return oss.str();
-}
-
 }
