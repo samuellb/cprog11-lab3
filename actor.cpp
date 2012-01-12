@@ -5,8 +5,8 @@
 
 namespace game {
 
-Actor::Actor(Controller &c, Place &p, int damage) :
-    health(100),
+Actor::Actor(Controller & c, Place & p, unsigned int h, unsigned int damage) :
+    health(h),
     base_damage(damage),
     current_place(&p),
     current_weapon(0),
@@ -131,7 +131,7 @@ bool Actor::is_player() const
 
 void Actor::save(std::ostream & os) const
 {
-    os << type() << " \"" << current_place->name() << "\"" << std::endl;
+    os << type() << " \"" << current_place->name() << "\" " << health << " " <<  base_damage << std::endl;
     if (current_container != 0) {
         std::string reference_type = "actor";
         std::string reference = name();

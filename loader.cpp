@@ -17,6 +17,7 @@
 
 #include <iostream>
 #include <stdexcept>
+#include <sstream>
 
 namespace game {
 
@@ -114,7 +115,26 @@ Object * Loader::parse_object_reference(std::istream & is) const
 
 template<typename T> void Loader::parse_actor(std::istream & is)
 {
-    controller.add_actor(*new T(controller, parse_place_reference(is)));
+    std::string line;
+    std::getline(is, line);
+    std::istringstream buffer(line);
+
+    Place & place = parse_place_reference(buffer);
+    Actor * actor = 0;
+
+    if (buffer.peek() == EOF) {
+        actor = new T(controller, place);
+    } else {
+        int health, base_damage;
+        std::string temp;
+        buffer >> temp;
+        std::istringstream(temp) >> health;
+        buffer >> temp;
+        std::istringstream(temp) >> base_damage;
+        actor = new T(controller, place, health, base_damage);
+    }
+
+    controller.add_actor(*actor);
 }
 
 template<typename T> void Loader::parse_object(std::istream & is)

@@ -7,7 +7,13 @@
 namespace game {
 
 Human::Human(Controller & c, Place & p) :
-    Actor(c, p, 25)
+    Actor(c, p, 100, 25)
+{
+
+}
+
+Human::Human(Controller & c, Place & p, unsigned int h, unsigned int damage) :
+    Actor(c, p, h, damage)
 {
 
 }

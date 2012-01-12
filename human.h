@@ -12,6 +12,7 @@ class Human : public Actor {
     
     public:
         Human(Controller &, Place &);
+        Human(Controller &, Place &, unsigned int, unsigned int);
         virtual ~Human();
    
         virtual bool equip(Object *);

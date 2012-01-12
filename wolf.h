@@ -11,7 +11,7 @@ class Wolf : public Actor {
     
     public:
         Wolf(Controller &, Place &);
-        Wolf(Controller &, Place &, int);
+        Wolf(Controller &, Place &, unsigned int, unsigned int);
         virtual ~Wolf();
 
         virtual void act();

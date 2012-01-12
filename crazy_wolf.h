@@ -11,6 +11,7 @@ class CrazyWolf : public Wolf {
     
     public:
         CrazyWolf(Controller &, Place &);
+        CrazyWolf(Controller &, Place &, unsigned int, unsigned int);
         virtual ~CrazyWolf();
 
         virtual void act();

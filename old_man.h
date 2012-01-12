@@ -11,6 +11,7 @@ class OldMan : public Human {
     
     public:
         OldMan(Controller &, Place &);
+        OldMan(Controller &, Place &, unsigned int, unsigned int);
         virtual ~OldMan();
 
         virtual void talked_to(Actor &);

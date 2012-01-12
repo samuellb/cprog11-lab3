@@ -10,6 +10,12 @@ Player::Player(Controller & c, Place & p) :
     controller.set_player(*this);
 }
 
+Player::Player(Controller & c, Place & p, unsigned int h, unsigned int damage) :
+    Human(c, p, h, damage)
+{
+    controller.set_player(*this);
+}
+
 Player::~Player()
 {
 

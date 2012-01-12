@@ -11,6 +11,12 @@ OldMan::OldMan(Controller & c, Place & p) :
     
 }
 
+OldMan::OldMan(Controller & c, Place & p, unsigned int h, unsigned int damage) :
+    Human(c, p, h, damage)
+{
+
+}
+
 OldMan::~OldMan()
 {
 

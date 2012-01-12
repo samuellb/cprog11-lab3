@@ -13,7 +13,7 @@ namespace game {
 class Actor {
     
     public:
-        Actor(Controller &, Place &, int);
+        Actor(Controller &, Place &, unsigned int, unsigned int);
         virtual ~Actor();
 
         virtual void act() = 0;

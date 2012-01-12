@@ -9,13 +9,13 @@
 namespace game {
 
 Wolf::Wolf(Controller & c, Place & p) :
-    Actor(c, p, 40)
+    Actor(c, p, 100, 40)
 {
 
 }
 
-Wolf::Wolf(Controller & c, Place & p, int damage) :
-    Actor(c, p, damage)
+Wolf::Wolf(Controller & c, Place & p, unsigned int h, unsigned int damage) :
+    Actor(c, p, h, damage)
 {
 
 }

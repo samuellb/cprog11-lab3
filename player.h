@@ -11,6 +11,7 @@ class Player : public Human {
     
     public:
         Player(Controller &, Place &);
+        Player(Controller &, Place &, unsigned int, unsigned int);
         virtual ~Player();
 
         virtual void act();

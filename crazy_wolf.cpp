@@ -9,9 +9,14 @@
 namespace game {
 
 CrazyWolf::CrazyWolf(Controller & c, Place & p) :
-    Wolf(c, p, 49)
+    Wolf(c, p, 100, 49)
 {
     std::cout << "The kid hears something in the woods, it sounds like a crazy wolf spawned a few clicks from here." << std::endl;
+}
+
+CrazyWolf::CrazyWolf(Controller & c, Place & p, unsigned int h, unsigned int damage) :
+    Wolf(c, p, h, damage)
+{
 }
 
 CrazyWolf::~CrazyWolf()
