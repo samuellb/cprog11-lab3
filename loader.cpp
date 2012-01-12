@@ -120,10 +120,8 @@ template<typename T> void Loader::parse_object(std::istream & is)
     } else if (reference_type == "actor") {
         controller.add_object(*new T(controller), *parse_actor_reference(is));
     } else if (reference_type == "container") {
-        std::cout << "here??" << std::endl;
         Container * container = dynamic_cast<Container*>(parse_object_reference(is));
         if (container != 0) {
-            std::cout << "valid" << std::endl;
             controller.add_object(*new T(controller), *container);
         }
     }

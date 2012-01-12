@@ -75,7 +75,6 @@ void Controller::introduction() const
     std::cout << "The kid wakes up from a nightmare, but where is he? Why is he not in his bed?" << std::endl;
     std::cout << "The kid has many questions but standing here will not get him any answers." << std::endl;
     std::cout << "The kid must find his way back home without getting killed." << std::endl;
-    std::cout << std::endl;
 }
 
 /**
@@ -133,6 +132,7 @@ void Controller::clear()
  */
 void Controller::run_output() const
 {
+    std::cout << std::endl;
     std::cout << player->get_place()->description();
 
     Container * container = player->get_container();
