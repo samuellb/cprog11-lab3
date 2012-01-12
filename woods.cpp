@@ -3,6 +3,8 @@
 #include "woods.h"
 #include "actor.h"
 #include "controller.h"
+#include "firewood.h"
+#include "human.h"
 
 
 namespace game {
@@ -26,7 +28,19 @@ std::string Woods::type() const
 
 void Woods::chop(Actor & actor)
 {
-    printf("chopped by %s\n", actor.name().c_str());
+    // Only humans can pick up stuff (or chop down trees...)
+    Human *human = dynamic_cast<Human*>(&actor);
+    if (human) {
+        if (actor.is_player()) {
+            std::cout << "You chopped down a tree and cut it in pieces. Took a couple of hours." << std::endl;
+        }
+        
+        // Give some firewood to the actor
+        Firewood *wood = new Firewood(controller);
+        if (!human->pick_up(*wood)) {
+            delete wood;
+        }
+    }
 }
 
 

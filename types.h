@@ -9,6 +9,7 @@ class Backpack;
 class Container;
 class Controller;
 class DirectionSet;
+class Firewood;
 class Human;
 class Key;
 class Loader;

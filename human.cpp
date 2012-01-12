@@ -42,9 +42,18 @@ bool Human::drop(Object & object)
 bool Human::pick_up(Object & object)
 {
     if (current_container != 0) {
-        return current_container->add(object);
+        if (!current_container->add(object)) {
+            // Too heavy or too large
+            if (is_player()) {
+                std::cout << "Your " << current_container->name() << " is full. " <<
+                             "You can't take the " << object.name() << "." << std::endl;
+            }
+            return false;
+        }
+        return true;
     }
 
+    // No container
     return false;
 }
 
