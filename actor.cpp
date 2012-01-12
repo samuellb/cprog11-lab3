@@ -36,8 +36,12 @@ void Actor::teleport(std::string name)
     go(controller.get_place(name));
 }
 
-
 void Actor::talk(Actor & actor)
+{
+    actor.talked_to(*this);
+}
+
+void Actor::talked_to(Actor &)
 {
 
 }
@@ -105,6 +109,11 @@ bool Actor::pick_up(Object &)
 bool Actor::has_object(std::string) const
 {
     return false;
+}
+
+Object * Actor::get_object(std::string) const
+{
+    return NULL;
 }
 
 bool Actor::is_player() const

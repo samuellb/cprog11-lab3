@@ -57,10 +57,20 @@ bool Human::pick_up(Object & object)
     return false;
 }
 
-bool Human::has_object(std::string name) const
+bool Human::has_object(std::string type) const
 {
     if (current_container != 0) {
-        return current_container->contains(name);
+        return current_container->contains(type);
+    }
+
+    return false;
+}
+
+
+Object *Human::get_object(std::string type) const
+{
+    if (current_container != 0) {
+        return current_container->get_of_type(type);
     }
 
     return false;

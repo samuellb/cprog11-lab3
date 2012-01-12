@@ -14,7 +14,6 @@ class Player : public Human {
         virtual ~Player();
 
         virtual void act();
-        virtual void talk(Actor &);
 
         virtual std::string type() const;
         virtual std::string name() const;

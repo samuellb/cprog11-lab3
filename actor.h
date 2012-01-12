@@ -19,12 +19,14 @@ class Actor {
         virtual void act() = 0;
         void go(std::string);
         void teleport(std::string);
-        virtual void talk(Actor &);
+        void talk(Actor &);
+        virtual void talked_to(Actor &);
         virtual void fight(Actor &);
         virtual bool equip(Object *);
         virtual bool drop(Object &);
         virtual bool pick_up(Object &);
         virtual bool has_object(std::string) const;
+        virtual Object * get_object(std::string) const;
 
         virtual std::string name() const = 0;
         virtual std::string type() const = 0;

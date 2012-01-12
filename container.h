@@ -19,6 +19,7 @@ class Container : public Object {
         virtual bool add(Object &);
         virtual bool remove(Object &);
         virtual bool contains(std::string) const;
+        virtual Object * get_of_type(std::string);
 
         inline bool is_empty() { return objects.size() == 0; }
         inline std::set<Object*> get_objects() { return objects; }

@@ -18,6 +18,7 @@ class Human : public Actor {
         virtual bool drop(Object &);
         virtual bool pick_up(Object &);
         virtual bool has_object(std::string) const;
+        virtual Object *get_object(std::string) const;
 
         virtual std::string name() const = 0;
         virtual std::string type() const = 0;

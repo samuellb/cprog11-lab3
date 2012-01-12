@@ -31,6 +31,7 @@ Loader::Loader(Controller & c) :
     parse_methods[std::string("sword")] = &Loader::parse_object<Sword>;
     parse_methods[std::string("key")] = &Loader::parse_object<Key>;
     parse_methods[std::string("backpack")] = &Loader::parse_object<Backpack>;
+    parse_methods[std::string("firewood")] = &Loader::parse_object<Backpack>;
 }
 
 Loader::~Loader()

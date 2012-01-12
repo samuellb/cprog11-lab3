@@ -46,6 +46,15 @@ bool Container::remove(Object & object)
     return false;
 }
 
+Object *Container::get_of_type(std::string type)
+{
+    for (auto o : objects) {
+        if (o->type() == type) return o;
+    }
+    
+    return NULL;
+}
+
 bool Container::contains(std::string type) const
 {
     for (auto o : objects) {

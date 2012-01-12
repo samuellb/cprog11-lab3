@@ -13,13 +13,15 @@ class OldMan : public Human {
         OldMan(Controller &, Place &);
         virtual ~OldMan();
 
+        virtual void talked_to(Actor &);
         virtual void act();
 
         virtual std::string type() const;
         virtual std::string name() const;
         virtual std::string description() const;
-    protected:
-        Controller &controller;
+        
+    private:
+        bool is_freezing() const;
 };
 
 }

@@ -25,11 +25,6 @@ void Player::act()
 {
 }
 
-void Player::talk(Actor & actor)
-{
-    std::cout << "the player cannot talk, " << actor.name() << " says something" << std::endl;
-}
-
 std::string Player::type() const
 {
     return "player";
