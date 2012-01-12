@@ -33,6 +33,11 @@ void Place::leave(Actor & actor)
     actors.erase(actor.name());
 }
 
+bool Place::has_neighbor(std::string dir) const
+{
+    return directions().count(dir) > 0;
+}
+
 Actor * Place::get_actor(std::string actor)
 {
     auto actor_pair = actors.find(actor);

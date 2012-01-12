@@ -17,7 +17,7 @@ class Actor {
         virtual ~Actor();
 
         virtual void act() = 0;
-        void go(std::string);
+        bool go(std::string);
         void teleport(std::string);
         void talk(Actor &);
         virtual void talked_to(Actor &);

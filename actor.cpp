@@ -19,9 +19,15 @@ Actor::~Actor()
 {
 }
 
-void Actor::go(std::string direction)
+bool Actor::go(std::string direction)
 {
-    go(current_place->neighbor(direction));
+    if (current_place->has_neighbor(direction)) {
+        go(current_place->neighbor(direction));
+        return true;
+    } else {
+        if (is_player()) std::cout << "Can't go there" << std::endl;
+        return false;
+    }
 }
 
 void Actor::go(Place & new_place)
