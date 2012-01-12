@@ -10,6 +10,7 @@
 #include "old_man.h"
 #include "outdoor_place.h"
 #include "woods.h"
+#include "house.h"
 #include "portal.h"
 #include "goal.h"
 #include "loader.h"
@@ -27,6 +28,7 @@ Loader::Loader(Controller & c) :
 {
     parse_methods[std::string("outdoor")] = &Loader::parse_xy_place<OutdoorPlace>;
     parse_methods[std::string("woods")] = &Loader::parse_xy_place<Woods>;
+    parse_methods[std::string("house")] = &Loader::parse_xy_place<House>;
     parse_methods[std::string("portal")] = &Loader::parse_xy_place<Portal>;
     parse_methods[std::string("goal")] = &Loader::parse_xy_place<Goal>;
     parse_methods[std::string("oldman")] = &Loader::parse_actor<OldMan>;

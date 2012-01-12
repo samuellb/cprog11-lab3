@@ -1,5 +1,5 @@
 outdoor 3 3 ws   "start"             "The kid looks around, will he choose the dark woods to the south or a little house to the west."
-outdoor 2 3 e    "old mans place"    "You're in the OLDMANs place. Have you TALKed to him?"
+house   2 3 e    "old mans place"    "You're in the OLDMANs place. Have you TALKed to him?"
 woods   3 4 nes  "woods34"           "The kid finds the mighty dark woods."
 woods   4 4 esw  "woods44"           "The kid stumbles in the dark wood."
 woods   5 4 sw   "woods54"           "The kid stumbles in the dark wood."
