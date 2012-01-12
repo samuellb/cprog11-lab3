@@ -89,6 +89,8 @@ bool Actor::fight(Actor & actor)
             return false;
         }
     }
+
+    return false;
 }
 
 bool Actor::equip(Object *)
