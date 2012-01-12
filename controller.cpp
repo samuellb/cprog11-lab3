@@ -139,7 +139,11 @@ void Controller::run_output() const
     if (container != 0 && !container->is_empty()) {
         std::cout << "Inventory: ";
         for (auto object : container->get_objects()) {
-            std::cout << object->name() << "  ";
+            if (object == player->get_weapon()) {
+                std::cout << object->name() << "[Equiped]  ";
+            } else {
+                std::cout << object->name() << "  ";
+            }
         }
         std::cout << std::endl;
     }
