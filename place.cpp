@@ -35,7 +35,12 @@ void Place::leave(Actor & actor)
 
 bool Place::has_neighbor(std::string dir) const
 {
-    return directions().count(dir) > 0;
+    try {
+        neighbor(dir);
+        return true;
+    } catch (std::logic_error &) {
+        return false;
+    }
 }
 
 Actor * Place::get_actor(std::string actor)
