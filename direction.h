@@ -10,7 +10,7 @@ enum Direction { N, E, S, W };
 
 Direction parse_direction(char);
 Direction parse_direction(std::string);
-extern const std::string direction_names[];
+extern const char *direction_names[];
 
 class DirectionSet {
     public:

@@ -19,7 +19,7 @@ class OutdoorPlace : public Place {
                      size_t x_, size_t y_, DirectionSet allowed_);
         virtual ~OutdoorPlace();
         
-        virtual std::set<std::string> & directions() const;
+        virtual std::set<std::string> directions() const;
         virtual Place & neighbor(std::string direction) const;
         Place & neighbor(Direction direction) const;
         

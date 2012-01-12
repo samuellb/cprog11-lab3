@@ -6,7 +6,7 @@
 
 namespace game {
 
-const std::string direction_names[] = {
+const char *direction_names[] = {
     "north", "east", "south", "west"
 };
 

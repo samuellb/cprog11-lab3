@@ -19,7 +19,7 @@ class Place {
         virtual void enter(Actor &);
         virtual void leave(Actor &);
 
-        virtual std::set<std::string> & directions() const = 0;
+        virtual std::set<std::string> directions() const = 0;
         bool has_neighbor(std::string) const;
         virtual Place & neighbor(std::string) const = 0;
 

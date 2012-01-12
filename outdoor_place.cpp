@@ -22,9 +22,9 @@ OutdoorPlace::~OutdoorPlace()
 {
 }
 
-std::set<std::string> & OutdoorPlace::directions() const
+std::set<std::string> OutdoorPlace::directions() const
 {
-    std::set<std::string> & set = *new std::set<std::string>();
+    std::set<std::string> set;
     
     for (size_t dir = 0; dir < 4; dir++) {
         if (allowed[dir]) {

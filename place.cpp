@@ -21,6 +21,9 @@ Place::Place(Controller & c,
 
 Place::~Place()
 {
+    for (auto obj : objects) {
+        delete obj.second;
+    }
 }
 
 void Place::enter(Actor & actor)
