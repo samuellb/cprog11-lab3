@@ -21,11 +21,11 @@ outdoor 9 9 e    "portal target"     "You wake up. It was just a bad dream! You 
 
 oldman  "old mans place"
 wolf    "woods38"
-kid "start"
+player  "start"
 
-sword   place   "start"
-backpack    actor   "kid"
-key container "backpack"
+sword       place       "start"
+backpack    actor       "kid"
+key         container   "backpack"
 
 end
 

@@ -111,12 +111,12 @@ void Controller::save(std::string filename)
 void Controller::clear()
 {
     map.clear();
-    
+
     for (auto kv : actors) {
         delete kv.second;
     }
     actors.clear();
-    
+
     //for (auto kv : objects) {
         //if (kv.second != 0) {
             //std::cout << kv.second->name() << std::endl;
@@ -404,9 +404,13 @@ void Controller::command_save(std::istream & is)
     std::string save_name;
     is >> save_name;
     check_args_end(is);
-    
-    save("saves/" + save_name);
-    std::cout << "Game saved." << std::endl;
+
+    if (!save_name.empty()) {
+        save("saves/" + save_name);
+        std::cout << "Game saved." << std::endl;
+    } else {
+        std::cout << "Failed to save game, please use \"save name\"." << std::endl;
+    }
 }
 
 void Controller::command_load(std::istream & is)
@@ -414,12 +418,16 @@ void Controller::command_load(std::istream & is)
     std::string save_name;
     is >> save_name;
     check_args_end(is);
-    
-    try {
-        load("saves/" + save_name);
-        std::cout << "Game loaded." << std::endl;
-    } catch (std::exception &) {
-        std::cerr << "Failed to load game." << std::endl;
+
+    if (!save_name.empty()) {
+        try {
+            load("saves/" + save_name);
+            std::cout << "Game loaded." << std::endl;
+        } catch (std::exception &) {
+            std::cerr << "Failed to load game." << std::endl;
+        }
+    } else {
+        std::cout << "Failed to save game, please use \"load name\"." << std::endl;
     }
 }
 

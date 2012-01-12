@@ -26,7 +26,7 @@ Loader::Loader(Controller & c) :
     parse_methods[std::string("woods")] = &Loader::parse_xy_place<Woods>;
     parse_methods[std::string("portal")] = &Loader::parse_xy_place<Portal>;
     parse_methods[std::string("oldman")] = &Loader::parse_actor<OldMan>;
-    parse_methods[std::string("kid")] = &Loader::parse_actor<Player>;
+    parse_methods[std::string("player")] = &Loader::parse_actor<Player>;
     parse_methods[std::string("wolf")] = &Loader::parse_actor<Wolf>;
     parse_methods[std::string("sword")] = &Loader::parse_object<Sword>;
     parse_methods[std::string("key")] = &Loader::parse_object<Key>;

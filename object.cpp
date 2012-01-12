@@ -16,7 +16,7 @@ Object::~Object()
 
 void Object::save(std::ostream & os, std::string & reference_type, std::string & reference) const
 {
-    os << type() << " \"" << name() << "\" " << reference_type << " \"" << reference << "\"" << std::endl;
+    os << type() << " " << reference_type << " \"" << reference << "\"" << std::endl;
 }
 
 }

@@ -115,6 +115,16 @@ bool Actor::is_player() const
 void Actor::save(std::ostream & os) const
 {
     os << type() << " \"" << current_place->name() << "\"" << std::endl;
+    if (current_container != 0) {
+        std::string reference_type = "actor";
+        std::string reference = name();
+        current_container->save(os, reference_type, reference);
+        for (auto object : current_container->get_objects()) {
+            reference_type = "container";
+            reference = current_container->name();
+            object->save(os, reference_type, reference);
+        }
+    }
 }
 
 
