@@ -118,16 +118,19 @@ template<typename T> void Loader::parse_actor(std::istream & is)
 
 template<typename T> void Loader::parse_object(std::istream & is)
 {
+    std::string name = read_string(is);
+
     std::string reference_type;
     is >> reference_type;
+    
     if (reference_type == "place") {
-        controller.add_object(*new T(controller), parse_place_reference(is));
+        controller.add_object(*new T(controller, name), parse_place_reference(is));
     } else if (reference_type == "actor") {
-        controller.add_object(*new T(controller), *parse_actor_reference(is));
+        controller.add_object(*new T(controller, name), *parse_actor_reference(is));
     } else if (reference_type == "container") {
         Container * container = dynamic_cast<Container*>(parse_object_reference(is));
         if (container != 0) {
-            controller.add_object(*new T(controller), *container);
+            controller.add_object(*new T(controller, name), *container);
         }
     }
 }

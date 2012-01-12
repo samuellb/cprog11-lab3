@@ -4,9 +4,8 @@
 
 namespace game {
 
-Backpack::Backpack(Controller &c) :
-    Container(c),
-    controller(c)
+Backpack::Backpack(Controller &c, std::string n) :
+    Container(c, n)
 {
 
 }
@@ -40,11 +39,6 @@ int Backpack::hold_weight() const
 int Backpack::hold_volume() const
 {
     return 100;
-}
-
-std::string Backpack::name() const
-{
-    return "backpack";
 }
 
 std::string Backpack::type() const

@@ -6,9 +6,8 @@
 
 namespace game {
     
-Sword::Sword(Controller &c) :
-    Weapon(c, 25),
-    controller(c)
+Sword::Sword(Controller &c, std::string n) :
+    Weapon(c, n, 25)
 {
     
 }
@@ -31,11 +30,6 @@ int Sword::volume() const
 int Sword::price() const
 {
     return 140;
-}
-
-std::string Sword::name() const
-{
-    return "sword";
 }
 
 std::string Sword::type() const

@@ -10,19 +10,15 @@ namespace game {
 class Firewood : public Object {
     
     public:
-        Firewood(Controller &c);
+        Firewood(Controller &, std::string);
         ~Firewood();
 
         virtual int weight() const;
         virtual int volume() const;
         virtual int price() const;
 
-        virtual std::string name() const;
         virtual std::string type() const;
         virtual std::string description() const;
-
-    protected:
-        Controller &controller;
 };
 
 }

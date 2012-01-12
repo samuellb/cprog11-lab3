@@ -4,10 +4,9 @@
 
 namespace game {
 
-Weapon::Weapon(Controller &c, int weapon_damage) :
-    Object(c),
-    damage(weapon_damage),
-    controller(c)
+Weapon::Weapon(Controller &c, std::string n, int weapon_damage) :
+    Object(c, n),
+    damage(weapon_damage)
 {
     
 }

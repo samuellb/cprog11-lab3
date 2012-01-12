@@ -11,7 +11,7 @@ namespace game {
 class Container : public Object {
     
     public:
-        Container(Controller &c);
+        Container(Controller &, std::string);
         virtual ~Container() = 0;
 
         virtual int hold_weight() const = 0;

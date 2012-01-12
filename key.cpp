@@ -3,9 +3,8 @@
 
 namespace game {
 
-Key::Key(Controller &c) :
-    Object(c),
-    controller(c)
+Key::Key(Controller &c, std::string n) :
+    Object(c, n)
 {
     
 }
@@ -28,11 +27,6 @@ int Key::volume() const
 int Key::price() const
 {
     return 100;
-}
-
-std::string Key::name() const
-{
-    return "key";
 }
 
 std::string Key::type() const

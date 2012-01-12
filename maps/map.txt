@@ -23,9 +23,9 @@ oldman  "old mans place"
 wolf    "woods38"
 player  "start"
 
-sword       place       "start"
-backpack    actor       "kid"
-backpack    actor       "oldman"
+sword       "sword"             place       "start"
+backpack    "kid's backpack"    actor       "kid"
+backpack    "oldman's backpack" actor       "oldman"
 
 end
 

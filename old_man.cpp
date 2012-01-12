@@ -37,7 +37,7 @@ void OldMan::talked_to(Actor & actor)
         actor.drop(*firewood);
         
         // Give them a key
-        Key *key = new Key(controller);
+        Key *key = new Key(controller, "key");
         if (actor.pick_up(*key)) {
             if (actor.is_player()) {
                 std::cout << "Thank you! Now I can make a fire! Here's a key." << std::endl;

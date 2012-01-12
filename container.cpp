@@ -5,8 +5,8 @@
 
 namespace game {
 
-Container::Container(Controller &c) :
-    Object(c),
+Container::Container(Controller &c, std::string n) :
+    Object(c, n),
     objects(),
     used_weight(0),
     used_volume(0)

@@ -10,7 +10,7 @@ namespace game {
 class Backpack : public Container {
     
     public:
-        Backpack(Controller &c);
+        Backpack(Controller &, std::string);
         virtual ~Backpack();
 
         virtual int weight() const;
@@ -22,12 +22,8 @@ class Backpack : public Container {
         //virtual bool add(Object &);
         //virtual bool remove(Object &);
 
-        virtual std::string name() const;
         virtual std::string type() const;
         virtual std::string description() const;
-
-    protected:
-        Controller &controller;
 };
 
 }

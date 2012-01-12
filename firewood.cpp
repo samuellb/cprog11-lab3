@@ -3,9 +3,8 @@
 
 namespace game {
 
-Firewood::Firewood(Controller &c) :
-    Object(c),
-    controller(c)
+Firewood::Firewood(Controller &c, std::string n) :
+    Object(c, n)
 {
     
 }
@@ -22,17 +21,12 @@ int Firewood::weight() const
 
 int Firewood::volume() const
 {
-    return 80;
+    return 40;
 }
 
 int Firewood::price() const
 {
     return 10;
-}
-
-std::string Firewood::name() const
-{
-    return "firewood";
 }
 
 std::string Firewood::type() const

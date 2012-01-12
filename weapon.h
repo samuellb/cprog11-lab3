@@ -10,14 +10,13 @@ namespace game {
 class Weapon : public Object {
     
     public:
-        Weapon(Controller &, int);
+        Weapon(Controller &, std::string, int);
         virtual ~Weapon();
 
         virtual int weight() const = 0;
         virtual int volume() const = 0;
         virtual int price() const = 0;
 
-        virtual std::string name() const = 0;
         virtual std::string type() const = 0;
         virtual std::string description() const = 0;
 
@@ -25,8 +24,6 @@ class Weapon : public Object {
 
     protected:
         unsigned int damage;
-
-        Controller &controller;
 };
 
 }

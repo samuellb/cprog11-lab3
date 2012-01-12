@@ -10,19 +10,15 @@ namespace game {
 class Key : public Object {
     
     public:
-        Key(Controller &c);
+        Key(Controller &, std::string);
         ~Key();
 
         virtual int weight() const;
         virtual int volume() const;
         virtual int price() const;
 
-        virtual std::string name() const;
         virtual std::string type() const;
         virtual std::string description() const;
-
-    protected:
-        Controller &controller;
 };
 
 }
