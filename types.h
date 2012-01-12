@@ -8,6 +8,7 @@ class Actor;
 class Backpack;
 class Container;
 class Controller;
+class CrazyWolf;
 class DirectionSet;
 class Firewood;
 class Human;

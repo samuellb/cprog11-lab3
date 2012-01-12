@@ -46,7 +46,7 @@ void Actor::talked_to(Actor &)
 
 }
 
-void Actor::fight(Actor & actor)
+bool Actor::fight(Actor & actor)
 {
     int damage = base_damage;
     if (current_weapon != 0) {
@@ -55,7 +55,7 @@ void Actor::fight(Actor & actor)
 
     int opponent_damage = actor.base_damage;
     if (actor.current_weapon != 0) {
-        opponent_damage = actor.current_weapon->get_damage();
+        opponent_damage += actor.current_weapon->get_damage();
     }
 
     std::cout << name() << " initiated a fight with " << actor.name() << " to the death." << std::endl;
@@ -72,7 +72,7 @@ void Actor::fight(Actor & actor)
         if (!actor.is_alive()) {
             std::cout << name() << " won this fight, " << actor.name() << " is dead." << std::endl;
             controller.kill(actor);
-            return;
+            return true;
         }
 
         if (actor.current_weapon != 0) {
@@ -86,7 +86,7 @@ void Actor::fight(Actor & actor)
         if (!is_alive()) {
             std::cout << actor.name() << " won this fight, " << name() << " is dead." << std::endl;
             controller.kill(*this);
-            return;
+            return false;
         }
     }
 }

@@ -7,7 +7,7 @@
 namespace game {
     
 Sword::Sword(Controller &c) :
-    Weapon(c, 17),
+    Weapon(c, 25),
     controller(c)
 {
     

@@ -1,18 +1,17 @@
-#ifndef WOLF_H
-#define WOLF_H
+#ifndef CRAZY_WOLF_H
+#define CRAZY_WOLF_H
 
 #include "types.h"
-#include "actor.h"
+#include "wolf.h"
 #include <string>
 
 namespace game {
 
-class Wolf : public Actor {
+class CrazyWolf : public Wolf {
     
     public:
-        Wolf(Controller &, Place &);
-        Wolf(Controller &, Place &, int);
-        virtual ~Wolf();
+        CrazyWolf(Controller &, Place &);
+        virtual ~CrazyWolf();
 
         virtual void act();
 

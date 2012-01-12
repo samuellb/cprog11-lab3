@@ -2,6 +2,8 @@
 
 #include "woods.h"
 #include "actor.h"
+#include "player.h"
+#include "crazy_wolf.h"
 #include "controller.h"
 #include "firewood.h"
 #include "human.h"
@@ -19,6 +21,17 @@ Woods::Woods(Controller & controller,
 
 Woods::~Woods()
 {
+}
+
+void Woods::enter(Actor & actor)
+{
+    if (dynamic_cast<Player*>(&actor) != 0) {
+        if (rand() % 3 == 0 && controller.get_actor("crazy") == 0) {
+            CrazyWolf * crazy_wolf = new CrazyWolf(controller, controller.get_place("woods38"));
+            controller.add_actor(*crazy_wolf);
+        }
+    }
+    Place::enter(actor);
 }
 
 std::string Woods::type() const

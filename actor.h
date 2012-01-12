@@ -21,7 +21,7 @@ class Actor {
         void teleport(std::string);
         void talk(Actor &);
         virtual void talked_to(Actor &);
-        virtual void fight(Actor &);
+        virtual bool fight(Actor &);
         virtual bool equip(Object *);
         virtual bool drop(Object &);
         virtual bool pick_up(Object &);

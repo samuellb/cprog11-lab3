@@ -6,6 +6,7 @@
 #include "player.h"
 #include "sword.h"
 #include "wolf.h"
+#include "crazy_wolf.h"
 #include "old_man.h"
 #include "outdoor_place.h"
 #include "woods.h"
@@ -28,6 +29,7 @@ Loader::Loader(Controller & c) :
     parse_methods[std::string("oldman")] = &Loader::parse_actor<OldMan>;
     parse_methods[std::string("player")] = &Loader::parse_actor<Player>;
     parse_methods[std::string("wolf")] = &Loader::parse_actor<Wolf>;
+    parse_methods[std::string("crazy_wolf")] = &Loader::parse_actor<CrazyWolf>;
     parse_methods[std::string("sword")] = &Loader::parse_object<Sword>;
     parse_methods[std::string("key")] = &Loader::parse_object<Key>;
     parse_methods[std::string("backpack")] = &Loader::parse_object<Backpack>;
