@@ -138,8 +138,7 @@ void Controller::clear()
  */
 void Controller::exit()
 {
-    clear();
-    std::exit(0);
+    is_running = false;
 }
 
 /**
