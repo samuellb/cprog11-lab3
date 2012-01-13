@@ -90,6 +90,7 @@ void Controller::load(std::string filename)
     std::ifstream file(filename);
     Loader loader(*this);
     loader.load(file);
+    map.check();
 }
 
 /**

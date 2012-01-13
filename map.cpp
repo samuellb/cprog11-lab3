@@ -1,4 +1,5 @@
 #include <stdexcept>
+#include <iostream>
 
 #include "map.h"
 #include "place.h"
@@ -76,6 +77,24 @@ void Map::clear()
     // Clear the grid
     for (size_t i = 0; i < grid.size(); i++) {
         grid[i] = NULL;
+    }
+}
+
+void Map::check() const
+{
+    for (auto it : places) {
+        Place & room = *it.second;
+        for (std::string dir : room.directions()) {
+            Place * p = NULL;
+            
+            try { p = &room.neighbor(dir); }
+            catch (std::out_of_range &) { }
+            
+            if (p == 0) {
+                std::cerr << "ERROR: invalid direction: room " << room.name() <<
+                             " direction " << dir << std::endl;
+            }
+        }
     }
 }
 

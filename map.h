@@ -32,6 +32,7 @@ class Map {
         
         void save(std::ostream & os) const;
         void clear();
+        void check() const;
         
     private:
         size_t width, height;
