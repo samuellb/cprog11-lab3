@@ -19,7 +19,7 @@ House::~House()
 
 std::string House::type() const
 {
-    return "trap";
+    return "house";
 }
 
 std::set<std::string> House::directions() const

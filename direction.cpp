@@ -60,6 +60,9 @@ std::string DirectionSet::to_string() const
     if ((*this)[Direction::E]) s += "e";
     if ((*this)[Direction::S]) s += "s";
     if ((*this)[Direction::W]) s += "w";
+    
+    if (s.empty()) s = "-";
+    
     return s;
 }
 

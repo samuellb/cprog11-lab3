@@ -129,6 +129,7 @@ void Controller::clear()
     //}
     objects.clear();
     
+    player = NULL;
     next_identifier = 1;
 }
 
