@@ -59,9 +59,9 @@ void Controller::run_game()
     while (is_running) {
         run_output();
         run_input();
-        //if (is_running) {
+        if (is_running) {
             run_step();
-        //}
+        }
     }
 }
 
