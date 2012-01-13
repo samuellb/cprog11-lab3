@@ -32,20 +32,23 @@ Wolf::~Wolf()
  */
 void Wolf::act()
 {
-    std::set<std::string> directions = get_place()->directions();
-    std::set<std::string> copy_directions = directions;
+    Place * place = get_place();
+    if (place != 0) {
+        std::set<std::string> directions = place->directions();
+        std::set<std::string> copy_directions = directions;
 
-    while (!copy_directions.empty()) {
-        int index = (int) (rand() % copy_directions.size());
-        auto iterator = copy_directions.begin();
-        advance(iterator, index);
+        while (!copy_directions.empty()) {
+            int index = (int) (rand() % copy_directions.size());
+            auto iterator = copy_directions.begin();
+            advance(iterator, index);
 
-        Place & place = get_place()->neighbor(*iterator);
-        if (dynamic_cast<Woods*>(&place) != 0) {
-            go(*iterator);
-            break;
-        } else {
-            copy_directions.erase(iterator);
+            Place & place = get_place()->neighbor(*iterator);
+            if (dynamic_cast<Woods*>(&place) != 0) {
+                go(*iterator);
+                break;
+            } else {
+                copy_directions.erase(iterator);
+            }
         }
     }
 }

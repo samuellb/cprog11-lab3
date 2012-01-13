@@ -31,10 +31,13 @@ CrazyWolf::~CrazyWolf()
  */
 void CrazyWolf::act()
 {
-    Actor * player = get_place()->get_actor("kid");
-    if (player != 0) {
-        if (fight(*player) == false) {
-            return;
+    Place * place = get_place();
+    if (place != 0) {
+        Actor * player = place->get_actor("kid");
+        if (player != 0) {
+            if (fight(*player) == false) {
+                return;
+            }
         }
     }
 
